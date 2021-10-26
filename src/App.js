@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './App.css';
 import './components/cell.css';
 import Cell from './components/cell';
 import Row from './components/row';
 
-const GRID_ROW_LENGTH =10;
-const GRID_COL_LENGTH =10;
+const GRID_ROW_LENGTH =1;
+const GRID_COL_LENGTH =96;
 const GRID_DATA = [];
 
   for (let row = 0; row<GRID_ROW_LENGTH; row++) {
@@ -16,8 +15,9 @@ const GRID_DATA = [];
         row: row,
         col: col,
         id: row * GRID_COL_LENGTH + col,
-        active: false,
+        mode:'active',
         selected: false
+        
       };
       GRID_DATA.push(cell);
     }
@@ -28,6 +28,7 @@ const GRID_DATA = [];
 const ROWS_ARRAY = new Array(GRID_ROW_LENGTH).fill(undefined);
 
 function App() {
+  const [savedGrid, setSavedGrid] = useState([]);
   const [grid, setGrid] = useState(GRID_DATA);
   const [range, setRange] = useState({
     start:null,
@@ -37,7 +38,7 @@ function App() {
     down:false
   });
   const wrapperRef = useRef();
-  const [startDate, setStartDate] = useState(new Date());
+  const [mode, setMode] = useState({mode:'sleep'})
   
 
   function handleMouseClick(cell) { 
@@ -47,7 +48,7 @@ function App() {
       const newGrid = prev.map(cell=>{
         let newCell = {...cell};
         if (clickedCell.id === newCell.id){
-        newCell.active = !newCell.active;
+        newCell.mode = mode.mode;
         }
         
         return newCell;
@@ -85,36 +86,28 @@ function App() {
       end:{...cell}
     }));
   }
+
+  function handleChangeMode(e){
+    setMode({mode:e.target.value});
+  }
   function clearGrid() {
     setGrid((prev=>{
       const newGrid = prev.map(cell=>{
         let newCell = {...cell};
-        newCell.active = false;
         newCell.selected = false;
+        newCell.mode = 'active';
         return newCell;
       });
       return newGrid;
     }));
   }
-  function calculateDaysInMonth (month, year) {
-    
-    return new Date(year, month, 0).getDate();
-  }
-
-  function handleMonthChange(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    let daysInMonth = calculateDaysInMonth(month, year);;
-    console.log(daysInMonth);
-    return setStartDate(date)
-  }
+  
 
   useEffect(()=>{
     document.addEventListener("mouseup",handleMouseUp);
     // document.addEventListener("click",handleMouseClick)
     
   },[])
-
   useEffect(() => {
     setGrid((prev=>{
       const prevGrid = [...prev];
@@ -126,14 +119,16 @@ function App() {
           const newCell = {...cell};
           if(start <=end ) {
             if(newCell.id >= start && newCell.id <= end){
-              newCell.active = true;
-              newCell.selected = mouseStatus.down;
+             newCell.selected = true;
+            }else {
+              newCell.selected = false;
             }
 
           } else if (end < start && mouseStatus.down) {
             if(newCell.id >= end && newCell.id <= start){
-              newCell.active = true;
-              newCell.selected = mouseStatus.down;
+               newCell.selected = true;
+            }else{
+              newCell.selected = false;
             }
           }
           
@@ -150,6 +145,39 @@ function App() {
     
     }, [range]);
 
+  useEffect(() => {
+    setGrid((prev=>{
+      const prevGrid = [...prev];
+      let newGrid = []
+      if (range.start && range.end) {
+      const start = range.start.id;
+      const end = range.end.id;
+        newGrid = prevGrid.map(cell=>{
+          const newCell = {...cell};
+          if(start <=end ) {
+            if(newCell.id >= start && newCell.id <= end){
+              newCell.mode = mode.mode;
+            }
+
+          } else if (end < start ) {
+            if(newCell.id >= end && newCell.id <= start){
+              newCell.mode = mode.mode;  
+            }
+          }
+          
+          return newCell;
+        })
+        return newGrid;
+      }
+      return prevGrid;
+      
+    }));
+
+
+    
+    
+    }, [mouseStatus]);
+
 
   return (
     
@@ -158,6 +186,7 @@ function App() {
       Sleep Tracker
       </header>
       <div ref={wrapperRef}>
+      
       
 
       {ROWS_ARRAY.map((_,i)=>{
@@ -180,13 +209,11 @@ function App() {
       </div>
 
       <button onClick={clearGrid}>Clear</button>
-      <DatePicker
-      selected={startDate}
-      onChange={handleMonthChange}
-      dateFormat="MM/yyyy"
-      showMonthYearPicker
-      showFullMonthYearPicker
-    />
+       <div onChange = {handleChangeMode}>
+        <input type="radio" value="sleep" name="mode" defaultChecked/> Sleep
+        <input type="radio" value="awake" name="mode" /> Awake
+        <input type="radio" value="active" name="mode" /> Active
+      </div>
 
     </div>
   );

@@ -1,6 +1,6 @@
 
 .cell {
-	width: 20px;
+	width: 12px;
 	height: 20px;
 	border: 1px solid black;
 	display: inline-block;
@@ -11,8 +11,14 @@
 	background: lightgreen;
 }
 .cell.active{
-	background: green;
+	background: red;
 	
+}
+.cell.sleep{
+	background: green;
+}
+.cell.awake{
+	background: orange;
 }
 
 .cell.selected {

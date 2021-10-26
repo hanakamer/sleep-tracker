@@ -20,7 +20,7 @@ function Cell(props) {
 
   return (
     <div 
-    className={`cell ${cell.active ? "active" : ""} ${cell.selected ? "selected" : ""} `}  
+    className={`cell ${cell.selected ? "selected" : ""} ${cell.mode} `}  
     onClick={handleMouseClick}
     onMouseDown={handleMouseDown}
     onMouseMove={handleMouseMove}
