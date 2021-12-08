@@ -33,19 +33,17 @@ function App() {
   const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
 
-  function handleMouseClick(cell) {
-    console.log(cell);
-    const clickedCell = { ...cell };
+  function handleMouseClick(cellID) {
     setGrid((prev) => {
-      const newGrid = prev.map((cell) => {
-        let newCell = { ...cell };
-        if (clickedCell.id === newCell.id) {
-          newCell.mode = mode.mode;
+      return prev.map((cell) => {
+        if (cellID !== cell.id) {
+          return cell;
         }
-
-        return newCell;
+        return {
+          ...cell,
+          mode: mode.mode
+        };
       });
-      return newGrid;
     });
   }
 
@@ -113,7 +111,7 @@ function App() {
           key={cell.id}
           mode={cell.mode}
           selected={cell.selected}
-          onClick={() => handleMouseClick(cell)}
+          onClick={() => handleMouseClick(cell.id)}
           onMouseDown={() => handleMouseDown(cell)}
           onMouseMove={() => handleMouseMove(cell)}
         />
