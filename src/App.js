@@ -92,6 +92,20 @@ function App() {
       return newGrid;
     });
   }
+  function setRangeMinToMax(startID, endID) {
+    //function checks which one is bigger than the other, and returns => min, max
+
+    if (startID > endID) {
+      return {
+        start: endID,
+        end: startID
+      };
+    }
+    return {
+      start: startID,
+      end: endID
+    };
+  }
 
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp);
@@ -101,13 +115,7 @@ function App() {
       const prevGrid = [...prev];
       let newGrid = [];
       if (range.start && range.end) {
-        let start, end;
-        start = range.start.id;
-        end = range.end.id;
-        if (range.start.id > range.end.id) {
-          start = range.end.id;
-          end = range.start.id;
-        }
+        let { start, end } = setRangeMinToMax(range.start.id, range.end.id);
         newGrid = prevGrid.map((cell) => {
           const newCell = { ...cell };
           if (newCell.id >= start && newCell.id <= end) {
@@ -122,7 +130,7 @@ function App() {
       }
       return prevGrid;
     });
-  }, [range]);
+  }, [range, mouseStatus.down, mode.mode]);
 
   return (
     <div className="App">
