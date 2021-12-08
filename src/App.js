@@ -21,8 +21,6 @@ for (let row = 0; row < GRID_ROW_LENGTH; row++) {
   }
 }
 
-const ROWS_ARRAY = new Array(GRID_ROW_LENGTH).fill(undefined);
-
 function App() {
   const [grid, setGrid] = useState(GRID_DATA);
   const [range, setRange] = useState({
@@ -52,11 +50,11 @@ function App() {
   }
 
   function handleMouseDown(cell) {
-    setMouseStatus({ down: true });
     setRange({
       start: { ...cell },
       end: null
     });
+    setMouseStatus({ down: true });
   }
 
   function handleMouseUp() {
@@ -106,6 +104,23 @@ function App() {
       end: endID
     };
   }
+  function Row({ row }) {
+    let cells = [];
+    cells = row.map((cell) => {
+      return (
+        <Cell
+          cell={cell}
+          key={cell.id}
+          mode={cell.mode}
+          selected={cell.selected}
+          onClick={() => handleMouseClick(cell)}
+          onMouseDown={() => handleMouseDown(cell)}
+          onMouseMove={() => handleMouseMove(cell)}
+        />
+      );
+    });
+    return cells;
+  }
 
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp);
@@ -136,28 +151,7 @@ function App() {
     <div className="App">
       <header className="App-header">Sleep Tracker</header>
       <div ref={wrapperRef}>
-        {ROWS_ARRAY.map((_, i) => {
-          const cells = [];
-          for (let j = 0; j < GRID_COL_LENGTH; j++) {
-            const index = i * GRID_COL_LENGTH + j;
-            const cell = { ...grid[index] };
-            cells.push(
-              <Cell
-                cell={cell}
-                key={cell.id}
-                onClick={handleMouseClick}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-              />
-            );
-          }
-          ROWS_ARRAY[i] = cells;
-          return (
-            <div key={i} className="row">
-              {cells}
-            </div>
-          );
-        })}
+        <Row row={grid} />
       </div>
 
       <button onClick={clearGrid}>Clear</button>
