@@ -5,7 +5,7 @@ import './components/cell.css';
 import Cell from './components/cell';
 
 const GRID_ROW_LENGTH = 1;
-const GRID_COL_LENGTH = 96;
+const GRID_COL_LENGTH = 20;
 const GRID_DATA = [];
 
 for (let row = 0; row < GRID_ROW_LENGTH; row++) {
@@ -101,24 +101,21 @@ function App() {
       const prevGrid = [...prev];
       let newGrid = [];
       if (range.start && range.end) {
-        const start = range.start.id;
-        const end = range.end.id;
+        let start, end;
+        start = range.start.id;
+        end = range.end.id;
+        if (range.start.id > range.end.id) {
+          start = range.end.id;
+          end = range.start.id;
+        }
         newGrid = prevGrid.map((cell) => {
           const newCell = { ...cell };
-          if (start <= end) {
-            if (newCell.id >= start && newCell.id <= end) {
+          if (newCell.id >= start && newCell.id <= end) {
+            if (mouseStatus.down) {
               newCell.selected = true;
-            } else {
-              newCell.selected = false;
             }
-          } else if (end < start && mouseStatus.down) {
-            if (newCell.id >= end && newCell.id <= start) {
-              newCell.selected = true;
-            } else {
-              newCell.selected = false;
-            }
+            newCell.mode = mode.mode;
           }
-
           return newCell;
         });
         return newGrid;
@@ -126,33 +123,6 @@ function App() {
       return prevGrid;
     });
   }, [range]);
-
-  useEffect(() => {
-    setGrid((prev) => {
-      const prevGrid = [...prev];
-      let newGrid = [];
-      if (range.start && range.end) {
-        const start = range.start.id;
-        const end = range.end.id;
-        newGrid = prevGrid.map((cell) => {
-          const newCell = { ...cell };
-          if (start <= end) {
-            if (newCell.id >= start && newCell.id <= end) {
-              newCell.mode = mode.mode;
-            }
-          } else if (end < start) {
-            if (newCell.id >= end && newCell.id <= start) {
-              newCell.mode = mode.mode;
-            }
-          }
-
-          return newCell;
-        });
-        return newGrid;
-      }
-      return prevGrid;
-    });
-  }, [mouseStatus]);
 
   return (
     <div className="App">
