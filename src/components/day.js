@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cell from './cell';
 
-function Row({ row, mode, onChange }) {
+function Day({ row, mode, onChange }) {
     const [range, setRange] = useState({
         start: null,
         end: null
@@ -41,6 +41,8 @@ function Row({ row, mode, onChange }) {
         }));
     }
     function handleMouseUp() {
+        setMouseStatus({ down: false });
+        setRange({ end: null, start: null });
         setGrid((prev) => {
             const newGrid = prev.map((cell) => {
                 let newCell = { ...cell };
@@ -49,8 +51,8 @@ function Row({ row, mode, onChange }) {
             });
             return newGrid;
         });
-        setMouseStatus({ down: false });
-        setRange({ end: null, start: null });
+
+
     }
 
     function setRangeMinToMax(startID, endID) {
@@ -111,4 +113,4 @@ function Row({ row, mode, onChange }) {
         );
     });;
 }
-export default Row;
+export default Day;

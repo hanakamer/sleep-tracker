@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 import './components/cell.css';
-import Row from './components/row';
+import Day from './components/day';
 
 const GRID_ROW_LENGTH = 1;
 const GRID_COL_LENGTH = 20;
@@ -22,9 +22,6 @@ for (let row = 0; row < GRID_ROW_LENGTH; row++) {
 }
 
 function App() {
-
-
-
   const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(GRID_DATA);
@@ -33,29 +30,24 @@ function App() {
   }
   function clearGrid() {
     setGrid((prev) => {
-      const newGrid = prev.map((cell) => {
-        let newCell = { ...cell };
-        newCell.selected = false;
-        newCell.mode = 'active';
-        return newCell;
+      return prev.map((cell) => {
+        return {
+          ...cell,
+          selected: false,
+          mode: 'active'
+        };
       });
-      return newGrid;
     });
   }
-  function handleGridDataChange(grid) {
-    setGrid(grid);
+  function handleGridDataChange(newData) {
+    setGrid(newData);
   }
-
-
-
-
-
 
   return (
     <div className="App">
       <header className="App-header">Sleep Tracker</header>
       <div ref={wrapperRef}>
-        <Row row={grid} mode={mode} onChange={handleGridDataChange} />
+        <Day row={grid} mode={mode} onChange={(data) => handleGridDataChange(data)} />
       </div>
 
       <button onClick={clearGrid}>Clear</button>
