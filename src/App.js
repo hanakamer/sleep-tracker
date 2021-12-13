@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 import './components/cell.css';
-import Cell from './components/cell';
+import Row from './components/row';
 
 const GRID_ROW_LENGTH = 1;
 const GRID_COL_LENGTH = 20;
@@ -22,58 +22,12 @@ for (let row = 0; row < GRID_ROW_LENGTH; row++) {
 }
 
 function App() {
-  const [grid, setGrid] = useState(GRID_DATA);
-  const [range, setRange] = useState({
-    start: null,
-    end: null
-  });
-  const [mouseStatus, setMouseStatus] = useState({
-    down: false
-  });
+
+
+
   const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
-
-  function handleMouseClick(cellID) {
-    setGrid((prev) => {
-      return prev.map((cell) => {
-        if (cellID !== cell.id) {
-          return cell;
-        }
-        return {
-          ...cell,
-          mode: mode.mode
-        };
-      });
-    });
-  }
-
-  function handleMouseDown(cell) {
-    setRange({
-      start: { ...cell },
-      end: null
-    });
-    setMouseStatus({ down: true });
-  }
-
-  function handleMouseUp() {
-    setGrid((prev) => {
-      const newGrid = prev.map((cell) => {
-        let newCell = { ...cell };
-        newCell.selected = false;
-        return newCell;
-      });
-      return newGrid;
-    });
-    setMouseStatus({ down: false });
-    setRange({ end: null, start: null });
-  }
-  function handleMouseMove(cell) {
-    setRange((prev) => ({
-      ...prev,
-      end: { ...cell }
-    }));
-  }
-
+  const [grid, setGrid] = useState(GRID_DATA);
   function handleModeChange(e) {
     setMode({ mode: e.target.value });
   }
@@ -88,68 +42,20 @@ function App() {
       return newGrid;
     });
   }
-  function setRangeMinToMax(startID, endID) {
-    //function checks which one is bigger than the other, and returns => min, max
-
-    if (startID > endID) {
-      return {
-        start: endID,
-        end: startID
-      };
-    }
-    return {
-      start: startID,
-      end: endID
-    };
-  }
-  function Row({ row }) {
-    let cells = [];
-    cells = row.map((cell) => {
-      return (
-        <Cell
-          cell={cell}
-          key={cell.id}
-          mode={cell.mode}
-          selected={cell.selected}
-          onClick={() => handleMouseClick(cell.id)}
-          onMouseDown={() => handleMouseDown(cell)}
-          onMouseMove={() => handleMouseMove(cell)}
-        />
-      );
-    });
-    return cells;
+  function handleGridDataChange(grid) {
+    setGrid(grid);
   }
 
-  useEffect(() => {
-    document.addEventListener('mouseup', handleMouseUp);
-  }, []);
-  useEffect(() => {
-    setGrid((prev) => {
-      const prevGrid = [...prev];
-      let newGrid = [];
-      if (range.start && range.end) {
-        let { start, end } = setRangeMinToMax(range.start.id, range.end.id);
-        newGrid = prevGrid.map((cell) => {
-          const newCell = { ...cell };
-          if (newCell.id >= start && newCell.id <= end) {
-            if (mouseStatus.down) {
-              newCell.selected = true;
-            }
-            newCell.mode = mode.mode;
-          }
-          return newCell;
-        });
-        return newGrid;
-      }
-      return prevGrid;
-    });
-  }, [range, mouseStatus.down, mode.mode]);
+
+
+
+
 
   return (
     <div className="App">
       <header className="App-header">Sleep Tracker</header>
       <div ref={wrapperRef}>
-        <Row row={grid} />
+        <Row row={grid} mode={mode} onChange={handleGridDataChange} />
       </div>
 
       <button onClick={clearGrid}>Clear</button>
