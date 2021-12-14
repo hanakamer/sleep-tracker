@@ -80,8 +80,11 @@ function Day({ row, mode, ...props }) {
                         newCell.selected = true;
                     } else {
                         newCell.selected = false;
+                        newCell.mode = mode.mode;
                     }
-                    newCell.mode = mode.mode;
+
+                } else {
+                    newCell.selected = false;
                 }
                 return newCell;
             });
