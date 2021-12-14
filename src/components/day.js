@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cell from './cell';
 
-function Day({ row, mode, onChange }) {
+function Day({ row, mode, ...props }) {
     const [range, setRange] = useState({
         start: null,
         end: null
@@ -9,22 +9,20 @@ function Day({ row, mode, onChange }) {
     const [mouseStatus, setMouseStatus] = useState({
         down: false
     });
-    const [grid, setGrid] = useState(row);
 
     function handleMouseClick(cellID) {
-        setGrid((prev) => {
-            return prev.map((cell) => {
-                if (cellID !== cell.id) {
-                    return cell;
-                }
-                return {
-                    ...cell,
-                    mode: mode.mode
-                };
-            });
-        });
+        row = row.map((cell) => {
+            if (cellID !== cell.id) {
 
+                return cell;
+            }
+            return {
+                ...cell,
+                mode: mode.mode
+            };
+        })
 
+        handleDataChange(row);
     }
 
     function handleMouseDown(cell) {
@@ -43,14 +41,11 @@ function Day({ row, mode, onChange }) {
     function handleMouseUp() {
         setMouseStatus({ down: false });
         setRange({ end: null, start: null });
-        setGrid((prev) => {
-            const newGrid = prev.map((cell) => {
-                let newCell = { ...cell };
-                newCell.selected = false;
-                return newCell;
-            });
-            return newGrid;
-        });
+        row = row.map((cell) => {
+            let newCell = { ...cell };
+            newCell.selected = false;
+            return newCell;
+        })
 
 
     }
@@ -69,48 +64,50 @@ function Day({ row, mode, onChange }) {
             end: endID
         };
     }
+    function handleDataChange(data) {
+        props.changeRow(data);
+    }
     useEffect(() => {
         document.addEventListener('mouseup', handleMouseUp);
     }, []);
-
     useEffect(() => {
-        setGrid((prev) => {
-            const prevGrid = [...prev];
-            let newGrid = [];
-            if (range.start && range.end) {
-                let { start, end } = setRangeMinToMax(range.start.id, range.end.id);
-                newGrid = prevGrid.map((cell) => {
-                    const newCell = { ...cell };
-                    if (newCell.id >= start && newCell.id <= end) {
-                        if (mouseStatus.down) {
-                            newCell.selected = true;
-                        }
-                        newCell.mode = mode.mode;
+        if (range.start && range.end) {
+            let { start, end } = setRangeMinToMax(range.start.id, range.end.id);
+            row = row.map((cell) => {
+                const newCell = { ...cell };
+                if (newCell.id >= start && newCell.id <= end) {
+                    if (mouseStatus.down) {
+                        newCell.selected = true;
+                    } else {
+                        newCell.selected = false;
                     }
-                    return newCell;
-                });
-                return newGrid;
-            }
-            return prevGrid;
-        });
+                    newCell.mode = mode.mode;
+                }
+                return newCell;
+            });
+            handleDataChange(row);
+        }
+
 
     }, [range, mouseStatus.down, mode.mode]);
-    useEffect(() => {
-        onChange(grid);
-    }, [grid])
 
-    return row.map((cell) => {
-        return (
-            <Cell
-                cell={cell}
-                key={cell.id}
-                mode={cell.mode}
-                selected={cell.selected}
-                onClick={() => handleMouseClick(cell.id)}
-                onMouseDown={() => handleMouseDown(cell)}
-                onMouseMove={() => handleMouseMove(cell)}
-            />
-        );
-    });;
+    return (
+        <div>
+            {row.map((cell) => {
+                return (
+                    <Cell
+                        cell={cell}
+                        key={cell.id}
+                        mode={cell.mode}
+                        selected={cell.selected}
+                        onClick={() => handleMouseClick(cell.id)}
+                        onMouseDown={() => handleMouseDown(cell)}
+                        onMouseMove={() => handleMouseMove(cell)}
+
+                    />
+                );
+            })}
+        </div>
+    )
 }
 export default Day;

@@ -30,6 +30,7 @@ function App() {
   }
   function clearGrid() {
     setGrid((prev) => {
+      console.log(prev)
       return prev.map((cell) => {
         return {
           ...cell,
@@ -41,13 +42,15 @@ function App() {
   }
   function handleGridDataChange(newData) {
     setGrid(newData);
+
   }
+
 
   return (
     <div className="App">
       <header className="App-header">Sleep Tracker</header>
       <div ref={wrapperRef}>
-        <Day row={grid} mode={mode} onChange={(data) => handleGridDataChange(data)} />
+        <Day row={grid} mode={mode} changeRow={handleGridDataChange} />
       </div>
 
       <button onClick={clearGrid}>Clear</button>
