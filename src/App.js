@@ -3,6 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 import './components/cell.css';
 import Day from './components/day';
+import DayView from './components/dayView';
 
 const GRID_ROW_LENGTH = 1;
 const GRID_COL_LENGTH = 20;
@@ -25,6 +26,7 @@ function App() {
   const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(GRID_DATA);
+  const [savedGrid, setSavedGrid] = useState([]);
   function handleModeChange(e) {
     setMode({ mode: e.target.value });
   }
@@ -39,15 +41,26 @@ function App() {
       });
     });
   }
+  function saveGrid() {
+    setSavedGrid((prev) => {
+      return [...prev, grid];
+    });
+    clearGrid();
+  }
 
   return (
     <div className="App">
       <header className="App-header">Sleep Tracker</header>
+      {savedGrid.map((day, i) => {
+        return <DayView key={i} row={day} />;
+      })}
+
       <div ref={wrapperRef}>
         <Day row={grid} mode={mode} changeRow={setGrid} />
       </div>
 
       <button onClick={clearGrid}>Clear</button>
+      <button onClick={saveGrid}>Save</button>
       <div>
         <input
           onChange={handleModeChange}
