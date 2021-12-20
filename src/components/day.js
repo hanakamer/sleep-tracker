@@ -54,7 +54,7 @@ function Day({ row, mode, changeRow }) {
     };
   }
   useEffect(() => {
-    document.addEventListener('mouseup', () => {
+      document.addEventListener('mouseup', function handleMouseUp {
       setMouseStatus({ down: false });
       setRange({ end: null, start: null });
       changeRow((prev) => {
@@ -65,6 +65,9 @@ function Day({ row, mode, changeRow }) {
         });
       });
     });
+    return function cleanUpEventListener(){
+        document.removeEventListener('mouseup', handleMouseUp)
+    }
   }, [changeRow]);
 
   useEffect(() => {
