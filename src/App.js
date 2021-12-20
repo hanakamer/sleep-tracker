@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 import './components/cell.css';
@@ -18,7 +18,6 @@ for (let col = 0; col < ROW_LENGTH; col++) {
 }
 
 function App() {
-  const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(ROW_DATA);
   const [savedGrid, setSavedGrid] = useState([]);
@@ -49,11 +48,7 @@ function App() {
       {savedGrid.map((day, i) => {
         return <DayView key={i} row={day} />;
       })}
-
-      <div ref={wrapperRef}>
-        <Day row={grid} mode={mode} changeRow={setGrid} />
-      </div>
-
+      <Day row={grid} mode={mode} changeRow={setGrid} />
       <button onClick={clearGrid}>Clear</button>
       <button onClick={saveGrid}>Save</button>
       <div>
