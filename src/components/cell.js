@@ -15,10 +15,10 @@ function Cell({ mode, selected, ...props }) {
 Cell.propTypes = {
   mode: PropTypes.string,
   selected: PropTypes.bool,
-  onClick: PropTypes.func,
-  onMouseDown: PropTypes.func,
-  onMouseUp: PropTypes.func,
-  onMouseMove: PropTypes.func
+  onClick: PropTypes.func.isRequired,
+  onMouseDown: PropTypes.func.isRequired,
+  onMouseUp: PropTypes.func.isRequired,
+  onMouseMove: PropTypes.func.isRequired
 };
 
 export default Cell;
