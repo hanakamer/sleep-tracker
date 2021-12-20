@@ -5,27 +5,22 @@ import './components/cell.css';
 import Day from './components/day';
 import DayView from './components/dayView';
 
-const GRID_ROW_LENGTH = 1;
-const GRID_COL_LENGTH = 20;
-const GRID_DATA = [];
+const ROW_LENGTH = 20;
+const ROW_DATA = [];
 
-for (let row = 0; row < GRID_ROW_LENGTH; row++) {
-  for (let col = 0; col < GRID_COL_LENGTH; col++) {
-    const cell = {
-      row: row,
-      col: col,
-      id: row * GRID_COL_LENGTH + col,
-      mode: 'active',
-      selected: false
-    };
-    GRID_DATA.push(cell);
-  }
+for (let col = 0; col < ROW_LENGTH; col++) {
+  const cell = {
+    id: col,
+    mode: 'active',
+    selected: false
+  };
+  ROW_DATA.push(cell);
 }
 
 function App() {
   const wrapperRef = useRef();
   const [mode, setMode] = useState({ mode: 'sleep' });
-  const [grid, setGrid] = useState(GRID_DATA);
+  const [grid, setGrid] = useState(ROW_DATA);
   const [savedGrid, setSavedGrid] = useState([]);
   function handleModeChange(e) {
     setMode({ mode: e.target.value });
