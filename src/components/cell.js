@@ -1,32 +1,24 @@
 import './cell.css';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-function Cell(props) {
- 
-  const cell = {...props.cell};
-
-  function handleMouseClick() {
-    props.onClick(cell);
-    
-  }
-  function handleMouseDown() {
-    props.onMouseDown(cell);
-  }
-  function handleMouseUp() {
-    props.onMouseUp(cell);
-  }
-  function handleMouseMove() {
-    props.onMouseMove(cell);
-  }
-
+function Cell({ mode, selected, ...props }) {
   return (
-    <div 
-    className={`cell ${cell.selected ? "selected" : ""} ${cell.mode} `}  
-    onClick={handleMouseClick}
-    onMouseDown={handleMouseDown}
-    onMouseMove={handleMouseMove}
-    > 
-    </div>
+    <div
+      className={classNames('cell', mode, { selected: selected })}
+      onClick={props.onClick}
+      onMouseDown={props.onMouseDown}
+      onMouseMove={props.onMouseMove}
+      onMouseUp={props.onMouseUp}></div>
   );
 }
+Cell.propTypes = {
+  mode: PropTypes.string,
+  selected: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  onMouseDown: PropTypes.func.isRequired,
+  onMouseUp: PropTypes.func.isRequired,
+  onMouseMove: PropTypes.func.isRequired
+};
 
 export default Cell;

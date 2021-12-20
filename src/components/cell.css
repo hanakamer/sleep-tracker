@@ -7,7 +7,6 @@
 	box-sizing: border-box;
 }
 .cell:hover {
-	border: 2px solid black;
 	background: lightgreen;
 }
 .cell.active{
