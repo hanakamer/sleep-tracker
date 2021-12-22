@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import './App.css';
-import './components/cell.css';
+import DatePicker from 'react-datepicker';
 import Day from './components/day';
 import DayView from './components/dayView';
+import Button from './components/button';
+import './App.css';
 
-const ROW_LENGTH = 20;
+const ROW_LENGTH = 96;
 const ROW_DATA = [];
 
 for (let col = 0; col < ROW_LENGTH; col++) {
@@ -21,6 +22,7 @@ function App() {
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(ROW_DATA);
   const [savedGrid, setSavedGrid] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
   function handleModeChange(e) {
     setMode({ mode: e.target.value });
   }
@@ -44,27 +46,52 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">Sleep Tracker</header>
-      {savedGrid.map((day, i) => {
-        return <DayView key={i} row={day} />;
-      })}
-      <Day row={grid} mode={mode} changeRow={setGrid} />
-      <button onClick={clearGrid}>Clear</button>
-      <button onClick={saveGrid}>Save</button>
-      <div>
-        <input
-          onChange={handleModeChange}
-          id="sleep"
-          type="radio"
-          value="sleep"
-          name="mode"
-          defaultChecked
-        />
-        <label htmlFor="sleep">Sleep</label>
-        <input onChange={handleModeChange} id="awake" type="radio" value="awake" name="mode" />
-        <label htmlFor="awake">Awake</label>
-        <input onChange={handleModeChange} id="active" type="radio" value="active" name="mode" />
-        <label htmlFor="active">Active</label>
+      <div className="main-container">
+        <header className="section-container">
+          <h1> Sleep Tracker </h1>
+        </header>
+        <div className="days-container">
+          {savedGrid.map((day, i) => {
+            return <DayView key={i} row={day} />;
+          })}
+        </div>
+
+        <div>
+          <Day row={grid} mode={mode} changeRow={setGrid} />
+        </div>
+
+        <div className="section-container">
+          <input onChange={handleModeChange} id="active" type="radio" value="active" name="mode" />
+          <label htmlFor="active">Active</label>
+
+          <input
+            onChange={handleModeChange}
+            id="falling-asleep"
+            type="radio"
+            value="falling-asleep"
+            name="mode"
+          />
+          <label htmlFor="falling-asleep">Falling asleep</label>
+          <input
+            onChange={handleModeChange}
+            id="sleep"
+            type="radio"
+            value="sleep"
+            name="mode"
+            defaultChecked
+          />
+          <label htmlFor="sleep">Sleep</label>
+        </div>
+        <div className="section-container">
+          <DatePicker
+            className="date-picker"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
+        <div className="section-container">
+          <Button action={saveGrid} name={'Save Sleep'} />
+        </div>
       </div>
     </div>
   );

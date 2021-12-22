@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Cell from './cell';
+import './day.css';
 
 function Day({ row, mode, changeRow }) {
   const [range, setRange] = useState({
@@ -94,7 +95,7 @@ function Day({ row, mode, changeRow }) {
   }, [range, mouseStatus.down, mode.mode, changeRow]);
 
   return (
-    <div>
+    <div className="day-container">
       {row.map((cell) => {
         return (
           <Cell
