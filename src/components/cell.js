@@ -8,8 +8,7 @@ function Cell({ mode, selected, ...props }) {
       className={classNames('cell', mode, { selected: selected })}
       onClick={props.onClick}
       onMouseDown={props.onMouseDown}
-      onMouseMove={props.onMouseMove}
-      onMouseUp={props.onMouseUp}></div>
+      onMouseMove={props.onMouseMove}></div>
   );
 }
 Cell.propTypes = {
@@ -17,7 +16,6 @@ Cell.propTypes = {
   selected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
-  onMouseUp: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired
 };
 
