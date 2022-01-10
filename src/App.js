@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Day from './components/day';
 import DayView from './components/dayView';
-import Button from './components/button';
-import './App.css';
+import Button from './components/Button';
+import AppCSS from './App.module.css';
 
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
@@ -43,12 +43,12 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="main-container">
-        <header className="section-container">
+    <div className={AppCSS.App}>
+      <div className={AppCSS.mainContainer}>
+        <header className={AppCSS.sectionContainer}>
           <h1> Sleep Tracker </h1>
         </header>
-        <div className="days-container">
+        <div className={AppCSS.daysContainer}>
           {savedGrid.map((day, i) => {
             return <DayView key={i} row={day} />;
           })}
@@ -58,7 +58,7 @@ function App() {
           <Day row={grid} mode={mode} changeRow={setGrid} />
         </div>
 
-        <div className="section-container">
+        <div className={AppCSS.sectionContainer}>
           <input onChange={handleModeChange} id="active" type="radio" value="active" name="mode" />
           <label htmlFor="active">Active</label>
 
@@ -80,10 +80,10 @@ function App() {
           />
           <label htmlFor="sleep">Sleep</label>
         </div>
-        <div className="section-container">
+        <div className={AppCSS.sectionContainer}>
           <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
         </div>
-        <div className="section-container">
+        <div className={AppCSS.sectionContainer}>
           <Button onClick={saveGrid} name={'Save Sleep'} />
         </div>
       </div>

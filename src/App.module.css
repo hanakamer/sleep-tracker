@@ -1,9 +1,9 @@
-.main-container {
+.mainContainer {
     display: grid;
     place-items: center;
     min-height: 100vh;
 }
-.days-container{
+.daysContainer{
     display:grid;
     justify-content: center;
     align-content: center;
@@ -11,7 +11,7 @@
     gap: 5px;
     grid-auto-flow: row;
 }
-.section-container{
+.sectionContainer{
     display: grid;
     justify-content: center;
     align-content: center;
