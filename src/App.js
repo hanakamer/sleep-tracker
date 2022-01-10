@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker from 'react-datepicker';
 import Day from './components/day';
 import DayView from './components/dayView';
 import Button from './components/button';
@@ -83,11 +81,7 @@ function App() {
           <label htmlFor="sleep">Sleep</label>
         </div>
         <div className="section-container">
-          <DatePicker
-            className="date-picker"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
+          <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
         </div>
         <div className="section-container">
           <Button action={saveGrid} name={'Save Sleep'} />
