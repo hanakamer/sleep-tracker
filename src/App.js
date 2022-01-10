@@ -85,6 +85,8 @@ function App() {
         </div>
         <div className="section-container">
           <Button action={saveGrid} name={'Save Sleep'} />
+          <Button action={saveGrid} name={'S'} />
+          <Button action={saveGrid} name={'Save Sleep bfgsdygsugfsgf'} />
         </div>
       </div>
     </div>
