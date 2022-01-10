@@ -84,9 +84,7 @@ function App() {
           <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
         </div>
         <div className="section-container">
-          <Button action={saveGrid} name={'Save Sleep'} />
-          <Button action={saveGrid} name={'S'} />
-          <Button action={saveGrid} name={'Save Sleep bfgsdygsugfsgf'} />
+          <Button onClick={saveGrid} name={'Save Sleep'} />
         </div>
       </div>
     </div>
