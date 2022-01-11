@@ -61,10 +61,10 @@ input[type='radio']:after {
      input[type='radio']#sleep:after{
          border: 2px solid #3f3feb;
      }
-    input[type='radio']#falling-asleep:checked:after {
+    input[type='radio']#fallingAsleep:checked:after {
          background-color: #adcbeb;
     }
-     input[type='radio']#falling-asleep:after{
+     input[type='radio']#fallingAsleep:after{
          border: 2px solid #adcbeb;
      }
 

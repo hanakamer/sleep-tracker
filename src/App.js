@@ -59,26 +59,32 @@ function App() {
         </div>
 
         <div className={AppCSS.sectionContainer}>
-          <input onChange={handleModeChange} id="active" type="radio" value="active" name="mode" />
-          <label htmlFor="active">Active</label>
+          <input
+            onChange={handleModeChange}
+            id={AppCSS.active}
+            type="radio"
+            value="active"
+            name="mode"
+          />
+          <label htmlFor={AppCSS.active}>Active</label>
 
           <input
             onChange={handleModeChange}
-            id="falling-asleep"
+            id={AppCSS.fallingAsleep}
             type="radio"
             value="falling-asleep"
             name="mode"
           />
-          <label htmlFor="falling-asleep">Falling asleep</label>
+          <label htmlFor={AppCSS.fallingAsleep}>Falling asleep</label>
           <input
             onChange={handleModeChange}
-            id="sleep"
+            id={AppCSS.sleep}
             type="radio"
             value="sleep"
             name="mode"
             defaultChecked
           />
-          <label htmlFor="sleep">Sleep</label>
+          <label htmlFor={AppCSS.sleep}>Sleep</label>
         </div>
         <div className={AppCSS.sectionContainer}>
           <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
