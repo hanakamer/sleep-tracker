@@ -1,15 +1,14 @@
-import './cell.css';
+import CellCSS from './Cell.module.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function Cell({ mode, selected, ...props }) {
   return (
     <div
-      className={classNames('cell', mode, { selected: selected })}
+      className={classNames(CellCSS.cell, CellCSS[mode], { [CellCSS.selected]: selected })}
       onClick={props.onClick}
       onMouseDown={props.onMouseDown}
-      onMouseMove={props.onMouseMove}
-      onMouseUp={props.onMouseUp}></div>
+      onMouseMove={props.onMouseMove}></div>
   );
 }
 Cell.propTypes = {
@@ -17,7 +16,6 @@ Cell.propTypes = {
   selected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
-  onMouseUp: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Cell from './cell';
+import { Cell } from '../Cell';
+import DayCSS from './Day.module.css';
 
 function DayView({ row }) {
   return (
-    <div>
+    <div className={DayCSS.container}>
       {row.map((cell) => {
         return <Cell cell={cell} key={cell.id} mode={cell.mode} />;
       })}

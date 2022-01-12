@@ -1,0 +1,35 @@
+
+.cell {
+	width: 8px;
+	height: 30px;
+	display:block;
+	border-radius:10px;
+	border: 2px solid white;
+	opacity:1;
+	position:relative;
+}
+
+.cell:hover{
+	cursor: pointer;
+}
+.cell:hover:after{
+    content: '';
+    height: 50px;
+    border-right: solid 1px #000;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    z-index: 1;
+}
+.cell.active{
+	background:#acb3b9;
+}
+.cell.sleep{
+	background:#3f3feb;
+}
+.cell.fallingAsleep{
+	background: #adcbeb;
+}
+.cell.selected {
+	opacity:0.25;
+}
