@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Day from './components/day';
-import DayView from './components/dayView';
-import Button from './components/Button';
-import RadioButton from './components/RadioButton';
+import { Day, DayView } from './components/Day';
+import { RadioButton } from './components/RadioButton';
 import AppCSS from './App.module.css';
-
+import { Button } from './components/Button';
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
 
@@ -61,8 +59,8 @@ function App() {
 
         <div className={AppCSS.sectionContainer}>
           <RadioButton onChange={handleModeChange} value="active" />
-          <RadioButton onChange={handleModeChange} value="sleep" />
-          <RadioButton onChange={handleModeChange} value="fallingAsleep" defaultChecked={true} />
+          <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
+          <RadioButton onChange={handleModeChange} value="fallingAsleep" />
         </div>
         <div className={AppCSS.sectionContainer}>
           <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />

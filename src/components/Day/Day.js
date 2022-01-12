@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Cell from './cell';
+import { Cell } from '../Cell';
 import DayCSS from './Day.module.css';
 
 function Day({ row, mode, changeRow }) {
