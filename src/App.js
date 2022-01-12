@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Day from './components/day';
 import DayView from './components/dayView';
 import Button from './components/Button';
+import RadioButton from './components/RadioButton';
 import AppCSS from './App.module.css';
 
 const ROW_LENGTH = 96;
@@ -59,32 +60,9 @@ function App() {
         </div>
 
         <div className={AppCSS.sectionContainer}>
-          <input
-            onChange={handleModeChange}
-            id={AppCSS.active}
-            type="radio"
-            value="active"
-            name="mode"
-          />
-          <label htmlFor={AppCSS.active}>Active</label>
-
-          <input
-            onChange={handleModeChange}
-            id={AppCSS.fallingAsleep}
-            type="radio"
-            value="falling-asleep"
-            name="mode"
-          />
-          <label htmlFor={AppCSS.fallingAsleep}>Falling asleep</label>
-          <input
-            onChange={handleModeChange}
-            id={AppCSS.sleep}
-            type="radio"
-            value="sleep"
-            name="mode"
-            defaultChecked
-          />
-          <label htmlFor={AppCSS.sleep}>Sleep</label>
+          <RadioButton onChange={handleModeChange} value="active" />
+          <RadioButton onChange={handleModeChange} value="sleep" />
+          <RadioButton onChange={handleModeChange} value="fallingAsleep" defaultChecked={true} />
         </div>
         <div className={AppCSS.sectionContainer}>
           <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
