@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Day, DayView } from './components/Day';
-import { RadioButton } from './components/RadioButton';
-import AppCSS from './App.module.css';
-import { Button } from './components/Button';
+// import { Day, DayView } from './components/Day';
+// import { RadioButton } from './components/RadioButton';
+import styles from './App.module.css';
+// import { Button } from './components/Button';
+import { DayRecorder } from './components/DayRecorder';
+import { Home } from './components/Home';
+// import { useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SavedGridContext } from './contexts/SavedGridContext';
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
 
@@ -16,59 +21,43 @@ for (let col = 0; col < ROW_LENGTH; col++) {
 }
 
 function App() {
-  const [mode, setMode] = useState({ mode: 'sleep' });
-  const [grid, setGrid] = useState(ROW_DATA);
+  // const [mode, setMode] = useState({ mode: 'sleep' });
+  // const [grid, setGrid] = useState(ROW_DATA);
   const [savedGrid, setSavedGrid] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  function handleModeChange(e) {
-    setMode({ mode: e.target.value });
-  }
-  function clearGrid() {
-    setGrid((prev) => {
-      return prev.map((cell) => {
-        return {
-          ...cell,
-          selected: false,
-          mode: 'active'
-        };
-      });
-    });
-  }
-  function saveGrid() {
+  // const [startDate, setStartDate] = useState(new Date());
+  // const navigate = useNavigate();
+  // function handleModeChange(e) {
+  //   setMode({ mode: e.target.value });
+  // }
+  // function clearGrid() {
+  //   setGrid((prev) => {
+  //     return prev.map((cell) => {
+  //       return {
+  //         ...cell,
+  //         selected: false,
+  //         mode: 'active'
+  //       };
+  //     });
+  //   });
+  // }
+  function saveGrid(newGrid) {
+    console.log(newGrid);
     setSavedGrid((prev) => {
-      return [...prev, grid];
+      console.log(prev);
+      return [...prev, newGrid];
     });
-    clearGrid();
   }
 
   return (
-    <div className={AppCSS.App}>
-      <div className={AppCSS.mainContainer}>
-        <header className={AppCSS.sectionContainer}>
-          <h1> Sleep Tracker </h1>
-        </header>
-        <div className={AppCSS.daysContainer}>
-          {savedGrid.map((day, i) => {
-            return <DayView key={i} row={day} />;
-          })}
-        </div>
-
-        <div>
-          <Day row={grid} mode={mode} changeRow={setGrid} />
-        </div>
-
-        <div className={AppCSS.sectionContainer}>
-          <RadioButton onChange={handleModeChange} value="active" />
-          <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
-          <RadioButton onChange={handleModeChange} value="fallingAsleep" />
-        </div>
-        <div className={AppCSS.sectionContainer}>
-          <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
-        </div>
-        <div className={AppCSS.sectionContainer}>
-          <Button onClick={saveGrid} name={'Save Sleep'} />
-        </div>
-      </div>
+    <div className={styles.mainContainer}>
+      <SavedGridContext.Provider value={{ savedGrid, setSavedGrid }}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/dayRecorder" element={<DayRecorder onSaveGrid={saveGrid} />} />
+          </Routes>
+        </Router>
+      </SavedGridContext.Provider>
     </div>
   );
 }

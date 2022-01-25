@@ -1,0 +1,12 @@
+.mainContainer {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+.sectionContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 4px;
+  grid-auto-flow: column;
+}
