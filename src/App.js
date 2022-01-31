@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-// import { Day, DayView } from './components/Day';
-// import { RadioButton } from './components/RadioButton';
 import styles from './App.module.css';
-// import { Button } from './components/Button';
 import { SaveDay } from './components/SaveDay';
 import { EditDay } from './components/EditDay';
 import { Home } from './components/Home';
-// import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SavedGridContext } from './contexts/SavedGridContext';
 
