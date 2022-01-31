@@ -3,48 +3,21 @@ import React, { useState } from 'react';
 // import { RadioButton } from './components/RadioButton';
 import styles from './App.module.css';
 // import { Button } from './components/Button';
-import { DayRecorder } from './components/DayRecorder';
+import { SaveDay } from './components/SaveDay';
+import { EditDay } from './components/EditDay';
 import { Home } from './components/Home';
 // import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SavedGridContext } from './contexts/SavedGridContext';
-const ROW_LENGTH = 96;
-const ROW_DATA = [];
-
-for (let col = 0; col < ROW_LENGTH; col++) {
-  const cell = {
-    id: col,
-    mode: 'active',
-    selected: false
-  };
-  ROW_DATA.push(cell);
-}
 
 function App() {
-  // const [mode, setMode] = useState({ mode: 'sleep' });
-  // const [grid, setGrid] = useState(ROW_DATA);
-  const [savedGrid, setSavedGrid] = useState([]);
-  // const [startDate, setStartDate] = useState(new Date());
-  // const navigate = useNavigate();
-  // function handleModeChange(e) {
-  //   setMode({ mode: e.target.value });
-  // }
-  // function clearGrid() {
-  //   setGrid((prev) => {
-  //     return prev.map((cell) => {
-  //       return {
-  //         ...cell,
-  //         selected: false,
-  //         mode: 'active'
-  //       };
-  //     });
-  //   });
-  // }
-  function saveGrid(newGrid) {
-    console.log(newGrid);
+  const [savedGrid, setSavedGrid] = useState({});
+  function saveGrid(newDayData, newDate) {
     setSavedGrid((prev) => {
-      console.log(prev);
-      return [...prev, newGrid];
+      return {
+        ...prev,
+        [newDate]: newDayData
+      };
     });
   }
 
@@ -54,7 +27,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/dayRecorder" element={<DayRecorder onSaveGrid={saveGrid} />} />
+            <Route path="/saveDay" element={<SaveDay onSaveGrid={saveGrid} />} />
+            <Route path="/editDay/:date" element={<EditDay onSaveGrid={saveGrid} />} />
           </Routes>
         </Router>
       </SavedGridContext.Provider>

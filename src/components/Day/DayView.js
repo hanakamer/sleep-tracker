@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { Cell } from '../Cell';
 import DayCSS from './Day.module.css';
 
-function DayView({ row }) {
+function DayView({ data, date, ...props }) {
   return (
     <div className={DayCSS.container}>
-      {row.map((cell) => {
+      <p>{date}</p>
+      {data.map((cell) => {
         return <Cell cell={cell} key={cell.id} mode={cell.mode} />;
       })}
     </div>
   );
 }
 DayView.propTypes = {
-  row: PropTypes.array,
+  data: PropTypes.array,
   mode: PropTypes.object,
-  changeRow: PropTypes.func
+  changeRow: PropTypes.func,
+  date: PropTypes.string
 };
 
 export default DayView;
