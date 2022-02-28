@@ -18,16 +18,18 @@ function Days({ days = [], ...props }) {
   }
   return (
     <div>
-      {Object.keys(days).map((date, i) => {
-        const data = days[date];
-        return (
-          <React.Fragment key={date}>
-            <DayView data={data} date={date} deleteDay={() => handleDelete(date)}></DayView>
-            <Button name={'delete'} onClick={() => handleDelete(date)} />
-            <Button name={'edit'} onClick={() => handleEdit(date)} />
-          </React.Fragment>
-        );
-      })}
+      {Object.keys(days).length
+        ? Object.keys(days).map((date, i) => {
+            const data = days[date];
+            return (
+              <React.Fragment key={date}>
+                <DayView data={data} date={date} deleteDay={() => handleDelete(date)}></DayView>
+                <Button name={'delete'} onClick={() => handleDelete(date)} />
+                <Button name={'edit'} onClick={() => handleEdit(date)} />
+              </React.Fragment>
+            );
+          })
+        : `No sleep recorded yet`}
     </div>
   );
 }
