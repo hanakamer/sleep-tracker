@@ -7,18 +7,10 @@ import { Button } from '../Button';
 import generalStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router-dom';
+import { createNewDayCells } from '../../utils/utils';
 
-const ROW_LENGTH = 96;
-const ROW_DATA = [];
-
-for (let col = 0; col < ROW_LENGTH; col++) {
-  const cell = {
-    id: col,
-    mode: 'active',
-    selected: false
-  };
-  ROW_DATA.push(cell);
-}
+const ROW_DATA = createNewDayCells();
+console.log(ROW_DATA);
 
 function SaveDay({ ...props }) {
   let { date: editDate } = useParams();

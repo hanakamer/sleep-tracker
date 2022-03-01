@@ -7,14 +7,18 @@ import { HomeButton } from '../HomeButton';
 import generalStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router-dom';
+import { calculateTime } from '../../utils/utils';
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
+const SPAN = 6;
 
 for (let col = 0; col < ROW_LENGTH; col++) {
+  const time = calculateTime(ROW_LENGTH, col + 1, SPAN);
   const cell = {
     id: col,
     mode: 'active',
-    selected: false
+    selected: false,
+    time: time
   };
   ROW_DATA.push(cell);
 }
