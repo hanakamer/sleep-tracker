@@ -3,7 +3,7 @@ import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../Day';
 import { RadioButton } from '../RadioButton';
 import { Button } from '../Button';
-import generalStyles from '../../common/general.module.css';
+import Styles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { createNewDayCells } from '../../utils/utils';
@@ -64,11 +64,11 @@ function SaveDay({ ...props }) {
   }
   return (
     <>
-      <div className={generalStyles.sectionContainer}>
+      <div className={Styles.sectionContainer}>
         <Day row={grid} mode={mode} changeRow={setGrid} />
       </div>
       {isPresent && (
-        <div className={generalStyles.sectionContainer}>
+        <div className={Styles.sectionContainer}>
           <p>
             date:{startDate} is already saved please select another day or go back to{' '}
             <Link to="/" name={'Home'}>
@@ -79,12 +79,12 @@ function SaveDay({ ...props }) {
         </div>
       )}
 
-      <div className={generalStyles.sectionContainer}>
+      <div className={Styles.sectionContainer}>
         <RadioButton onChange={handleModeChange} value="active" />
         <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
         <RadioButton onChange={handleModeChange} value="fallingAsleep" />
       </div>
-      <div className={generalStyles.sectionContainer}>
+      <div className={Styles.sectionContainer}>
         <input
           disabled={editDate ? true : false}
           type="date"
@@ -93,7 +93,7 @@ function SaveDay({ ...props }) {
           value={editDate}
         />
       </div>
-      <div className={generalStyles.sectionContainer}>
+      <div className={Styles.sectionContainer}>
         <Button disabled={startDate ? false : true} onClick={saveDay} name={'Save Sleep'} />
       </div>
     </>

@@ -1,4 +1,4 @@
-import CellCSS from './Cell.module.css';
+import Styles from './Cell.module.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { useState } from 'react';
@@ -8,7 +8,7 @@ function Cell({ mode, selected, cell, ...props }) {
   return (
     <React.Fragment>
       <div
-        className={classNames(CellCSS.cell, CellCSS[mode], { [CellCSS.selected]: selected })}
+        className={classNames(Styles.cell, Styles[mode], { [Styles.selected]: selected })}
         onClick={props.onClick}
         onMouseDown={props.onMouseDown}
         onMouseMove={props.onMouseMove}
@@ -16,9 +16,9 @@ function Cell({ mode, selected, cell, ...props }) {
         onMouseOut={() => {
           setHoverState(false);
         }}>
-        {hoverState && <span className={classNames(CellCSS.info)}>{cell.time}</span>}
+        {hoverState && <span className={classNames(Styles.info)}>{cell.time}</span>}
         {cell.time === '00:00' || cell.time === '06:00' ? (
-          <span className={classNames(CellCSS.info)}>{cell.time}</span>
+          <span className={classNames(Styles.info)}>{cell.time}</span>
         ) : (
           ''
         )}

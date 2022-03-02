@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './App.module.css';
+import Styles from './App.module.css';
 import { SaveDay } from './components/SaveDay';
 import { EditDay } from './components/EditDay';
 import { Home } from './components/Home';
@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className={styles.mainContainer}>
+    <div className={Styles.mainContainer}>
       <SavedGridContext.Provider value={{ savedGrid, setSavedGrid }}>
         <Router>
           <Routes>
