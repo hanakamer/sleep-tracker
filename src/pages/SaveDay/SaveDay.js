@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { SavedGridContext } from '../../contexts/SavedGridContext';
-import { Day } from '../Day';
-import { RadioButton } from '../RadioButton';
-import { Button } from '../Button';
+import { Day } from '../../components/Day';
+import { RadioButton } from '../../components/RadioButton';
+import { Button } from '../../components/Button';
 import Styles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
