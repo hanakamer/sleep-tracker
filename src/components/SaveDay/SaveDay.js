@@ -2,11 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../Day';
 import { RadioButton } from '../RadioButton';
-import { HomeButton } from '../HomeButton';
 import { Button } from '../Button';
 import generalStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { createNewDayCells } from '../../utils/utils';
 
 const ROW_DATA = createNewDayCells();
@@ -72,7 +71,10 @@ function SaveDay({ ...props }) {
         <div className={generalStyles.sectionContainer}>
           <p>
             date:{startDate} is already saved please select another day or go back to{' '}
-            {<HomeButton />} page to edit this day
+            <Link to="/" name={'Home'}>
+              Home
+            </Link>{' '}
+            page to edit this day
           </p>
         </div>
       )}

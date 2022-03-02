@@ -3,10 +3,9 @@ import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../Day';
 import { RadioButton } from '../RadioButton';
 import { Button } from '../Button';
-import { HomeButton } from '../HomeButton';
 import generalStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { calculateTime } from '../../utils/utils';
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
@@ -55,7 +54,9 @@ function EditDay({ ...props }) {
       </div>
       <div className={generalStyles.sectionContainer}>
         <Button onClick={editDay} name={'Save Sleep'} />
-        <HomeButton />
+        <Link to="/" name={'Home'}>
+          Home
+        </Link>
       </div>
     </>
   );
