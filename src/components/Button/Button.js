@@ -2,13 +2,16 @@ import ButtonCSS from './Button.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ onClick, name, disabled = false }) {
+function Button({ onClick, name, disabled }) {
   return (
     <button disabled={disabled} className={ButtonCSS.button} onClick={onClick}>
       {name}
     </button>
   );
 }
+Button.defaultProps = {
+  disabled: false
+};
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
