@@ -24,7 +24,7 @@ function Home() {
       <Days days={savedGrid} />
       {
         <div className={generalStyles.sectionContainer}>
-          <Link to="/saveDay"> Record Sleep</Link>
+          <Link to="/createDay"> Record Sleep</Link>
         </div>
       }
     </>

@@ -11,7 +11,7 @@ import { createNewDayCells } from '../../utils/utils';
 const ROW_DATA = createNewDayCells();
 console.log(ROW_DATA);
 
-function SaveDay({ ...props }) {
+function CreateDay({ ...props }) {
   let { date: editDate } = useParams();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(ROW_DATA);
@@ -47,7 +47,7 @@ function SaveDay({ ...props }) {
       });
     });
   }
-  function saveDay() {
+  function createDay() {
     if (savedGrid[startDate]) {
       setIsPresent(true);
     } else {
@@ -91,13 +91,13 @@ function SaveDay({ ...props }) {
         />
       </div>
       <div className={Styles.sectionContainer}>
-        <Button disabled={startDate ? false : true} onClick={saveDay} name={'Save Sleep'} />
+        <Button disabled={startDate ? false : true} onClick={createDay} name={'Save Sleep'} />
       </div>
     </>
   );
 }
-SaveDay.propTypes = {
+CreateDay.propTypes = {
   onSaveGrid: PropTypes.func
 };
 
-export default SaveDay;
+export default CreateDay;

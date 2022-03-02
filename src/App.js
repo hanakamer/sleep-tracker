@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Styles from './App.module.css';
-import { SaveDay } from './components/SaveDay';
-import { EditDay } from './components/EditDay';
-import { Home } from './components/Home';
+import { CreateDay } from './pages/CreateDay';
+import { EditDay } from './pages/EditDay';
+import { Home } from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SavedGridContext } from './contexts/SavedGridContext';
 
@@ -23,7 +23,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/saveDay" element={<SaveDay onSaveGrid={saveGrid} />} />
+            <Route path="/createDay" element={<CreateDay onSaveGrid={saveGrid} />} />
             <Route path="/editDay/:date" element={<EditDay onSaveGrid={saveGrid} />} />
           </Routes>
         </Router>
