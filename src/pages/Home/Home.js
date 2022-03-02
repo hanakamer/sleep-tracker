@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { SavedGridContext } from '../../contexts/SavedGridContext';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
+import { Link } from 'react-router-dom';
 import { Days } from '../../components/Days';
 import generalStyles from '../../common/general.module.css';
 const ROW_LENGTH = 96;
@@ -17,7 +16,6 @@ for (let col = 0; col < ROW_LENGTH; col++) {
   ROW_DATA.push(cell);
 }
 function Home() {
-  const navigate = useNavigate();
   const { savedGrid } = useContext(SavedGridContext);
 
   return (
@@ -26,7 +24,7 @@ function Home() {
       <Days days={savedGrid} />
       {
         <div className={generalStyles.sectionContainer}>
-          <Button onClick={() => navigate('/saveDay')} name={'Record Sleep'} />
+          <Link to="/saveDay"> Record Sleep</Link>
         </div>
       }
     </>

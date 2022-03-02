@@ -54,9 +54,7 @@ function EditDay({ ...props }) {
       </div>
       <div className={Styles.sectionContainer}>
         <Button onClick={editDay} name={'Save Sleep'} />
-        <Link to="/" name={'Home'}>
-          Home
-        </Link>
+        <Link to="/">Home</Link>
       </div>
     </>
   );

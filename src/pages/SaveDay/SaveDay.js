@@ -71,10 +71,7 @@ function SaveDay({ ...props }) {
         <div className={Styles.sectionContainer}>
           <p>
             date:{startDate} is already saved please select another day or go back to{' '}
-            <Link to="/" name={'Home'}>
-              Home
-            </Link>{' '}
-            page to edit this day
+            <Link to="/">Home</Link> page to edit this day
           </p>
         </div>
       )}
