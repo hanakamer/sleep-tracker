@@ -3,13 +3,13 @@ import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../../components/Day';
 import { RadioButton } from '../../components/RadioButton';
 import { Button } from '../../components/Button';
-import Styles from '../../common/general.module.css';
+import { DatePicker } from '../../components/DatePicker';
+import GeneralStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { createNewDayCells } from '../../utils/utils';
 
 const ROW_DATA = createNewDayCells();
-console.log(ROW_DATA);
 
 function CreateDay() {
   let { date: editDate } = useParams();
@@ -22,14 +22,8 @@ function CreateDay() {
 
   useEffect(() => {
     if (editDate) {
-      console.log(editDate, 'in if');
       const dayToEdit = savedGrid.filter((day) => day.date === editDate);
-      console.log(dayToEdit);
-      if (dayToEdit.length > 0) {
-        setGrid(dayToEdit[0].data);
-      } else {
-        navigate('/DayRecorder');
-      }
+      setGrid(dayToEdit[0].data);
     }
   }, [editDate, navigate, savedGrid]);
 
@@ -58,17 +52,16 @@ function CreateDay() {
     }
   }
   function handleDateChange(event) {
-    console.log(event);
     const newDate = event.target.value;
     setStartDate(newDate);
   }
   return (
     <>
-      <div className={Styles.sectionContainer}>
+      <div className={GeneralStyles.sectionContainer}>
         <Day row={grid} mode={mode} changeRow={setGrid} />
       </div>
       {isPresent && (
-        <div className={Styles.sectionContainer}>
+        <div className={GeneralStyles.sectionContainer}>
           <p>
             date:{startDate} is already saved please select another day or go back to{' '}
             <Link to="/">Home</Link> page to edit this day
@@ -76,21 +69,18 @@ function CreateDay() {
         </div>
       )}
 
-      <div className={Styles.sectionContainer}>
+      <div className={GeneralStyles.sectionContainer}>
         <RadioButton onChange={handleModeChange} value="active" />
         <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
         <RadioButton onChange={handleModeChange} value="fallingAsleep" />
       </div>
-      <div className={Styles.sectionContainer}>
-        <input
-          disabled={editDate ? true : false}
-          type="date"
-          selected={startDate}
-          onChange={handleDateChange}
-          value={editDate}
-        />
+      <div className={GeneralStyles.sectionContainer}>
+        <DatePicker
+          startDate={startDate}
+          editDate={editDate}
+          onChange={handleDateChange}></DatePicker>
       </div>
-      <div className={Styles.sectionContainer}>
+      <div className={GeneralStyles.sectionContainer}>
         <Button disabled={startDate ? false : true} onClick={createDay} name={'Save Sleep'} />
       </div>
     </>

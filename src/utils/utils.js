@@ -7,7 +7,6 @@ export function minsToHours(totalminutes) {
   const hours = Math.floor(totalminutes / 60);
   const minutes = totalminutes % 60;
   let resultH = hours > 23 ? hours - 24 : hours;
-  console.log(resultH.toString());
   resultH = resultH.toString().length < 2 ? `0${resultH}` : resultH;
   let resultM = minutes.toString().length < 2 ? `0${minutes}` : minutes;
   return `${resultH}:${resultM}`;

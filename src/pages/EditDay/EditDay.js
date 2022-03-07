@@ -3,6 +3,7 @@ import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../../components/Day';
 import { RadioButton } from '../../components/RadioButton';
 import { Button } from '../../components/Button';
+import { DatePicker } from '../../components/DatePicker';
 import Styles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
@@ -50,7 +51,7 @@ function EditDay() {
         <RadioButton onChange={handleModeChange} value="fallingAsleep" />
       </div>
       <div className={Styles.sectionContainer}>
-        <input disabled type="date" value={date} />
+        <DatePicker editDate={date}></DatePicker>
       </div>
       <div className={Styles.sectionContainer}>
         <Button onClick={editDay} name={'Save Sleep'} />
