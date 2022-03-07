@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../../components/Day';
-import { RadioButton } from '../../components/RadioButton';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
+import { FieldSleepMode } from '../../components/FieldSleepMode';
 import GeneralStyles from '../../common/general.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
@@ -70,9 +70,7 @@ function CreateDay() {
       )}
 
       <div className={GeneralStyles.sectionContainer}>
-        <RadioButton onChange={handleModeChange} value="active" />
-        <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
-        <RadioButton onChange={handleModeChange} value="fallingAsleep" />
+        <FieldSleepMode onChange={handleModeChange}></FieldSleepMode>
       </div>
       <div className={GeneralStyles.sectionContainer}>
         <DatePicker

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { SavedGridContext } from '../../contexts/SavedGridContext';
 import { Day } from '../../components/Day';
-import { RadioButton } from '../../components/RadioButton';
+import { FieldSleepMode } from '../../components/FieldSleepMode';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
 import Styles from '../../common/general.module.css';
@@ -31,9 +31,7 @@ function EditDay() {
       </div>
 
       <div className={Styles.sectionContainer}>
-        <RadioButton onChange={handleModeChange} value="active" />
-        <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
-        <RadioButton onChange={handleModeChange} value="fallingAsleep" />
+        <FieldSleepMode onChange={handleModeChange}></FieldSleepMode>
       </div>
       <div className={Styles.sectionContainer}>
         <DatePicker editDate={date}></DatePicker>

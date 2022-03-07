@@ -20,7 +20,7 @@ function DatePicker({ editDate, startDate, onChange }) {
   );
 }
 DatePicker.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   editDate: PropTypes.string,
   startDate: PropTypes.string
 };
