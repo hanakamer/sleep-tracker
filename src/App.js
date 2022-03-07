@@ -1,34 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Styles from './App.module.css';
 import { CreateDay } from './pages/CreateDay';
 import { EditDay } from './pages/EditDay';
 import { Home } from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { SavedGridContext } from './contexts/SavedGridContext';
+import { SavedGridProvider } from './contexts/SavedGridContext';
 
 function App() {
-  const [savedGrid, setSavedGrid] = useState({});
-  function saveGrid(newDayData, newDate) {
-    setSavedGrid((prev) => {
-      return {
-        ...prev,
-        [newDate]: newDayData
-      };
-    });
-  }
-
   return (
-    <div className={Styles.mainContainer}>
-      <SavedGridContext.Provider value={{ savedGrid, setSavedGrid, saveGrid }}>
+    <SavedGridProvider>
+      <div className={Styles.mainContainer}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/createDay" element={<CreateDay onSaveGrid={saveGrid} />} />
-            <Route path="/editDay/:date" element={<EditDay onSaveGrid={saveGrid} />} />
+            <Route path="/createDay" element={<CreateDay />} />
+            <Route path="/editDay/:date" element={<EditDay />} />
           </Routes>
         </Router>
-      </SavedGridContext.Provider>
-    </div>
+      </div>
+    </SavedGridProvider>
   );
 }
 

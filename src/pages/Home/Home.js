@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { SavedGridContext } from '../../contexts/SavedGridContext';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Days } from '../../components/Days';
 import generalStyles from '../../common/general.module.css';
+import { useSavedGrid } from '../../contexts/SavedGridContext';
 const ROW_LENGTH = 96;
 const ROW_DATA = [];
 
@@ -16,7 +16,7 @@ for (let col = 0; col < ROW_LENGTH; col++) {
   ROW_DATA.push(cell);
 }
 function Home() {
-  const { savedGrid } = useContext(SavedGridContext);
+  const { savedGrid } = useSavedGrid();
 
   return (
     <>

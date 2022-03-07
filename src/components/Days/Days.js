@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { SavedGridContext } from '../../contexts/SavedGridContext';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { DayView } from '../Day';
 import { Button } from '../Button';
 import { useNavigate, generatePath } from 'react-router-dom';
+import { useSavedGrid } from '../../contexts/SavedGridContext';
 
 function Days({ days = [], ...props }) {
-  const { savedGrid, setSavedGrid } = useContext(SavedGridContext);
+  const { savedGrid, setSavedGrid } = useSavedGrid();
   const navigate = useNavigate();
   function handleDelete(date) {
     const newSavedGrid = { ...savedGrid };

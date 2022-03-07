@@ -1,17 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { SavedGridContext } from '../../contexts/SavedGridContext';
+import React, { useState } from 'react';
 import { Day } from '../../components/Day';
 import { FieldSleepMode } from '../../components/FieldSleepMode';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
 import Styles from '../../common/general.module.css';
-import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useSavedGrid } from '../../contexts/SavedGridContext';
 
 function EditDay() {
   let { date } = useParams();
   const [mode, setMode] = useState({ mode: 'sleep' });
-  const { savedGrid, saveGrid } = useContext(SavedGridContext);
+  const { savedGrid, saveGrid } = useSavedGrid();
   const [grid, setGrid] = useState(savedGrid[date]);
   const navigate = useNavigate();
 
@@ -43,8 +42,5 @@ function EditDay() {
     </>
   );
 }
-EditDay.propTypes = {
-  onSaveGrid: PropTypes.func
-};
 
 export default EditDay;

@@ -1,13 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { SavedGridContext } from '../../contexts/SavedGridContext';
+import React, { useState, useEffect } from 'react';
 import { Day } from '../../components/Day';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
 import { FieldSleepMode } from '../../components/FieldSleepMode';
 import GeneralStyles from '../../common/general.module.css';
-import PropTypes from 'prop-types';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { createNewDayCells } from '../../utils/utils';
+import { useSavedGrid } from '../../contexts/SavedGridContext';
 
 const ROW_DATA = createNewDayCells();
 
@@ -18,7 +17,7 @@ function CreateDay() {
   const [startDate, setStartDate] = useState(editDate);
   const [isPresent, setIsPresent] = useState(false);
   const navigate = useNavigate();
-  const { savedGrid, saveGrid } = useContext(SavedGridContext);
+  const { savedGrid, saveGrid } = useSavedGrid();
 
   useEffect(() => {
     if (editDate) {
@@ -84,8 +83,5 @@ function CreateDay() {
     </>
   );
 }
-CreateDay.propTypes = {
-  onSaveGrid: PropTypes.func
-};
 
 export default CreateDay;
