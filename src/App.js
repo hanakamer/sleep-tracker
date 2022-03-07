@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className={Styles.mainContainer}>
-      <SavedGridContext.Provider value={{ savedGrid, setSavedGrid }}>
+      <SavedGridContext.Provider value={{ savedGrid, setSavedGrid, saveGrid }}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />}></Route>

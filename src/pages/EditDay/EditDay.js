@@ -22,10 +22,10 @@ for (let col = 0; col < ROW_LENGTH; col++) {
   ROW_DATA.push(cell);
 }
 
-function EditDay({ ...props }) {
+function EditDay() {
   let { date } = useParams();
   const [mode, setMode] = useState({ mode: 'sleep' });
-  const { savedGrid } = useContext(SavedGridContext);
+  const { savedGrid, saveGrid } = useContext(SavedGridContext);
   const [grid, setGrid] = useState(savedGrid[date]);
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ function EditDay({ ...props }) {
   }
 
   function editDay() {
-    props.onSaveGrid(grid, date);
+    saveGrid(grid, date);
     navigate('/');
   }
 

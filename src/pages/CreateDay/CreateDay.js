@@ -11,14 +11,14 @@ import { createNewDayCells } from '../../utils/utils';
 const ROW_DATA = createNewDayCells();
 console.log(ROW_DATA);
 
-function CreateDay({ ...props }) {
+function CreateDay() {
   let { date: editDate } = useParams();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const [grid, setGrid] = useState(ROW_DATA);
   const [startDate, setStartDate] = useState(editDate);
   const [isPresent, setIsPresent] = useState(false);
   const navigate = useNavigate();
-  const { savedGrid } = useContext(SavedGridContext);
+  const { savedGrid, saveGrid } = useContext(SavedGridContext);
 
   useEffect(() => {
     if (editDate) {
@@ -52,7 +52,7 @@ function CreateDay({ ...props }) {
       setIsPresent(true);
     } else {
       setIsPresent(false);
-      props.onSaveGrid(grid, startDate);
+      saveGrid(grid, startDate);
       clearGrid();
       navigate('/');
     }
