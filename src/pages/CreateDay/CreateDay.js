@@ -63,8 +63,8 @@ function CreateDay() {
       {isPresent && (
         <div className={GeneralStyles.sectionContainer}>
           <p>
-            date:{startDate} is already saved please select another day or go back to{' '}
-            <Link to="/">Home</Link> page to edit this day
+            This date is already saved please select another day or edit{' '}
+            <Link to={{ pathname: `/editDay/${startDate}` }}>{startDate}</Link>
           </p>
         </div>
       )}
