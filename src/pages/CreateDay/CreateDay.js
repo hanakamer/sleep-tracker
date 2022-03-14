@@ -73,9 +73,10 @@ function CreateDay() {
       </div>
       <div className={GeneralStyles.sectionContainer}>
         <DatePicker
-          startDate={startDate}
-          editDate={editDate}
-          onChange={handleDateChange}></DatePicker>
+          value={startDate}
+          disabled={editDate}
+          onChange={handleDateChange}
+          id={startDate ? startDate : 'initialID'}></DatePicker>
       </div>
       <div className={GeneralStyles.sectionContainer}>
         <Button disabled={startDate ? false : true} onClick={createDay} name={'Save Sleep'} />

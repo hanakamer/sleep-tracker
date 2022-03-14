@@ -2,16 +2,16 @@ import GeneralStyles from '../../common/general.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function DatePicker({ editDate, startDate, onChange }) {
+function DatePicker({ disabled, value, onChange, id }) {
   return (
     <React.Fragment>
       <input
-        disabled={editDate ? true : false}
+        disabled={disabled ? true : false}
         type="date"
-        selected={startDate}
+        selected={value}
         onChange={onChange}
-        value={editDate}
-        id="datepicker"
+        value={disabled}
+        id={id}
       />
       <label className={GeneralStyles.visuallyHidden} htmlFor="datepicker">
         date picker
@@ -21,8 +21,9 @@ function DatePicker({ editDate, startDate, onChange }) {
 }
 DatePicker.propTypes = {
   onChange: PropTypes.func,
-  editDate: PropTypes.string,
-  startDate: PropTypes.string
+  disabled: PropTypes.string,
+  value: PropTypes.string,
+  id: PropTypes.string.isRequired
 };
 
 export default DatePicker;

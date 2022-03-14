@@ -33,7 +33,7 @@ function EditDay() {
         <FieldSleepMode onChange={handleModeChange}></FieldSleepMode>
       </div>
       <div className={Styles.sectionContainer}>
-        <DatePicker editDate={date}></DatePicker>
+        <DatePicker disabled={date} id={date}></DatePicker>
       </div>
       <div className={Styles.sectionContainer}>
         <Button onClick={editDay} name={'Save Sleep'} />
