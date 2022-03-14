@@ -1,14 +1,29 @@
-import CellCSS from './Cell.module.css';
+import Styles from './Cell.module.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import React, { useState } from 'react';
 
-function Cell({ mode, selected, ...props }) {
+function Cell({ mode, selected, cell, ...props }) {
+  const [hoverState, setHoverState] = useState(false);
   return (
-    <div
-      className={classNames(CellCSS.cell, CellCSS[mode], { [CellCSS.selected]: selected })}
-      onClick={props.onClick}
-      onMouseDown={props.onMouseDown}
-      onMouseMove={props.onMouseMove}></div>
+    <React.Fragment>
+      <div
+        className={classNames(Styles.cell, Styles[mode], { [Styles.selected]: selected })}
+        onClick={props.onClick}
+        onMouseDown={props.onMouseDown}
+        onMouseMove={props.onMouseMove}
+        onMouseOver={() => setHoverState(true)}
+        onMouseOut={() => {
+          setHoverState(false);
+        }}>
+        {hoverState && <span className={classNames(Styles.info)}>{cell.time}</span>}
+        {cell.time === '00:00' || cell.time === '06:00' ? (
+          <span className={classNames(Styles.info)}>{cell.time}</span>
+        ) : (
+          ''
+        )}
+      </div>
+    </React.Fragment>
   );
 }
 Cell.propTypes = {
@@ -16,7 +31,8 @@ Cell.propTypes = {
   selected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
-  onMouseMove: PropTypes.func.isRequired
+  onMouseMove: PropTypes.func.isRequired,
+  cell: PropTypes.object
 };
 
 export default Cell;

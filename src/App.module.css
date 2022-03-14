@@ -1,27 +1,25 @@
 .mainContainer {
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
-.daysContainer{
-    display:grid;
-    justify-content: center;
-    align-content: center;
-    grid-gap: 5px;
-    gap: 5px;
-    grid-auto-flow: row;
+.daysContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-gap: 5px;
+  gap: 5px;
+  grid-auto-flow: row;
 }
-.sectionContainer{
+/* .sectionContainer{
     display: grid;
     justify-content: center;
     align-content: center;
     gap: 4px;
     grid-auto-flow: column;
-}
+} */
 
-ß
-.date-picker{
-    border:1px solid #000;
-    border-radius:4px;
+.date-picker {
+  border: 1px solid #000;
+  border-radius: 4px;
 }
-    

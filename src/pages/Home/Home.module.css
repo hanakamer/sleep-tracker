@@ -1,0 +1,12 @@
+.daysContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-gap: 5px;
+  gap: 5px;
+  grid-auto-flow: row;
+}
+.date-picker {
+  border: 1px solid #000;
+  border-radius: 4px;
+}

@@ -1,75 +1,24 @@
-import React, { useState } from 'react';
-import { Day, DayView } from './components/Day';
-import { RadioButton } from './components/RadioButton';
-import AppCSS from './App.module.css';
-import { Button } from './components/Button';
-const ROW_LENGTH = 96;
-const ROW_DATA = [];
-
-for (let col = 0; col < ROW_LENGTH; col++) {
-  const cell = {
-    id: col,
-    mode: 'active',
-    selected: false
-  };
-  ROW_DATA.push(cell);
-}
+import React from 'react';
+import Styles from './App.module.css';
+import { CreateDay } from './pages/CreateDay';
+import { EditDay } from './pages/EditDay';
+import { Home } from './pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SavedGridProvider } from './contexts/SavedGridContext';
 
 function App() {
-  const [mode, setMode] = useState({ mode: 'sleep' });
-  const [grid, setGrid] = useState(ROW_DATA);
-  const [savedGrid, setSavedGrid] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  function handleModeChange(e) {
-    setMode({ mode: e.target.value });
-  }
-  function clearGrid() {
-    setGrid((prev) => {
-      return prev.map((cell) => {
-        return {
-          ...cell,
-          selected: false,
-          mode: 'active'
-        };
-      });
-    });
-  }
-  function saveGrid() {
-    setSavedGrid((prev) => {
-      return [...prev, grid];
-    });
-    clearGrid();
-  }
-
   return (
-    <div className={AppCSS.App}>
-      <div className={AppCSS.mainContainer}>
-        <header className={AppCSS.sectionContainer}>
-          <h1> Sleep Tracker </h1>
-        </header>
-        <div className={AppCSS.daysContainer}>
-          {savedGrid.map((day, i) => {
-            return <DayView key={i} row={day} />;
-          })}
-        </div>
-
-        <div>
-          <Day row={grid} mode={mode} changeRow={setGrid} />
-        </div>
-
-        <div className={AppCSS.sectionContainer}>
-          <RadioButton onChange={handleModeChange} value="active" />
-          <RadioButton onChange={handleModeChange} value="sleep" defaultChecked={true} />
-          <RadioButton onChange={handleModeChange} value="fallingAsleep" />
-        </div>
-        <div className={AppCSS.sectionContainer}>
-          <input type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
-        </div>
-        <div className={AppCSS.sectionContainer}>
-          <Button onClick={saveGrid} name={'Save Sleep'} />
-        </div>
+    <SavedGridProvider>
+      <div className={Styles.mainContainer}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/createDay" element={<CreateDay />} />
+            <Route path="/editDay/:date" element={<EditDay />} />
+          </Routes>
+        </Router>
       </div>
-    </div>
+    </SavedGridProvider>
   );
 }
 

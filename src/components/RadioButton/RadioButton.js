@@ -1,24 +1,21 @@
-import RadioButtonCSS from './RadioButton.module.css';
+import Styles from './RadioButton.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RadioButton({ onChange, value, defaultChecked = false }) {
+function RadioButton({ onChange, value, defaultChecked = false, children }) {
   return (
     <div>
       <input
         onChange={onChange}
-        id={RadioButtonCSS[value]}
-        className={RadioButtonCSS.radioBtn}
+        id={Styles[value]}
+        className={Styles.radioBtn}
         type="radio"
         value={value}
         name="mode"
         defaultChecked={defaultChecked}
       />
-      <label
-        className={RadioButtonCSS.btnLabel}
-        htmlFor={RadioButtonCSS[value]}
-        id={RadioButtonCSS[value]}>
-        {value}
+      <label className={Styles.btnLabel} htmlFor={Styles[value]} id={Styles[value]}>
+        {children}
       </label>
     </div>
   );
@@ -26,7 +23,8 @@ function RadioButton({ onChange, value, defaultChecked = false }) {
 RadioButton.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  defaultChecked: PropTypes.bool
+  defaultChecked: PropTypes.bool,
+  children: PropTypes.node.isRequired
 };
 
 export default RadioButton;
