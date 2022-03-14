@@ -5,9 +5,15 @@ import PropTypes from 'prop-types';
 function FieldSleepMode({ onChange }) {
   return (
     <React.Fragment>
-      <RadioButton onChange={onChange} value="active" />
-      <RadioButton onChange={onChange} value="sleep" defaultChecked={true} />
-      <RadioButton onChange={onChange} value="fallingAsleep" />
+      <RadioButton onChange={onChange} value="active">
+        active
+      </RadioButton>
+      <RadioButton onChange={onChange} value="sleep" defaultChecked={true}>
+        sleep
+      </RadioButton>
+      <RadioButton onChange={onChange} value="fallingAsleep">
+        Falling Asleep
+      </RadioButton>
     </React.Fragment>
   );
 }

@@ -2,7 +2,7 @@ import Styles from './RadioButton.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RadioButton({ onChange, value, defaultChecked = false }) {
+function RadioButton({ onChange, value, defaultChecked = false, children }) {
   return (
     <div>
       <input
@@ -15,7 +15,7 @@ function RadioButton({ onChange, value, defaultChecked = false }) {
         defaultChecked={defaultChecked}
       />
       <label className={Styles.btnLabel} htmlFor={Styles[value]} id={Styles[value]}>
-        {value}
+        {children}
       </label>
     </div>
   );
@@ -23,7 +23,8 @@ function RadioButton({ onChange, value, defaultChecked = false }) {
 RadioButton.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  defaultChecked: PropTypes.bool
+  defaultChecked: PropTypes.bool,
+  children: PropTypes.node.isRequired
 };
 
 export default RadioButton;
