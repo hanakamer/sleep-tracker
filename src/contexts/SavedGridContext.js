@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
+import { useLocalStorageState } from '../hooks/hooks';
 import PropTypes from 'prop-types';
 
 const SavedGridContext = createContext();
@@ -8,7 +9,8 @@ export function useSavedGrid() {
 }
 
 export function SavedGridProvider({ children }) {
-  const [savedGrid, setSavedGrid] = useState({});
+  const [savedGrid, setSavedGrid] = useLocalStorageState('SavedGrid', {});
+
   function saveGrid(newDayData, newDate) {
     setSavedGrid((prev) => {
       return {
