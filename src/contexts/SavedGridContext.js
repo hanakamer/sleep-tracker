@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { useLocalStorageState } from '../hooks/hooks';
+import { useLocalStorageState } from '../state/useLocalStorage';
 import PropTypes from 'prop-types';
 
 const SavedGridContext = createContext();
