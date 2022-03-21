@@ -10,13 +10,10 @@ function Home() {
 
   return (
     <>
-      <p>{savedGrid && <span>{savedGrid.length}</span>}</p>
       <Days days={savedGrid} />
-      {
-        <div className={generalStyles.sectionContainer}>
-          <Link to="/createDay"> Record Sleep</Link>
-        </div>
-      }
+      <Link to="/createDay" className={generalStyles.link}>
+        Record Sleep
+      </Link>
     </>
   );
 }

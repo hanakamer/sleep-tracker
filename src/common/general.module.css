@@ -1,15 +1,40 @@
-.mainContainer {
+.container {
   display: grid;
   place-items: center;
-  min-height: 100vh;
+  align-content: center;
+  margin: 50px;
+  gap: 10px;
 }
-.sectionContainer {
+.verticalAlignLargeContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+  grid-auto-flow: row;
+}
+.verticalAlignMediumContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+  grid-auto-flow: row;
+}
+.verticalAlignSmallContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 4px;
+  grid-auto-flow: row;
+}
+
+.horizontalAlignContainer {
   display: grid;
   justify-content: center;
   align-content: center;
   gap: 4px;
   grid-auto-flow: column;
 }
+
 .visuallyHidden {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
@@ -22,4 +47,14 @@
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important;
+}
+.link {
+  background: none;
+  border-radius: 5px;
+  font-weight: 800;
+  min-width: 40px;
+  border: 1px solid #000;
+  color: #000;
+  padding: 10px;
+  text-decoration: none;
 }

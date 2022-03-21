@@ -1,6 +1,8 @@
 import { createContext, useContext } from 'react';
 import { useLocalStorageState } from '../state/useLocalStorage';
+import { calculateSummaryOfSleep } from '../utils/utils';
 import PropTypes from 'prop-types';
+import { minsToHours } from '../utils/utils';
 
 const SavedGridContext = createContext();
 
@@ -13,9 +15,21 @@ export function SavedGridProvider({ children }) {
 
   function saveGrid(newDayData, newDate) {
     setSavedGrid((prev) => {
+      const summary = calculateSummaryOfSleep(newDayData);
+      console.log(summary);
+      Object.keys(summary).map((key) => {
+        const totalMins = summary[key] * 15; //calculate total mins
+        summary[key] = minsToHours(totalMins);
+        return summary[key];
+      });
+
+      console.log(summary);
       return {
         ...prev,
-        [newDate]: newDayData
+        [newDate]: {
+          data: newDayData,
+          summary: summary
+        }
       };
     });
   }

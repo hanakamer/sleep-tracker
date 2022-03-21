@@ -1,0 +1,12 @@
+.card {
+  border: solid black 1px;
+  border-radius: 25px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 70px 160px 100px;
+  grid-template-rows: 150px;
+  justify-content: space-evenly;
+  justify-items: stretch;
+  align-content: space-evenly;
+  align-items: stretch;
+}

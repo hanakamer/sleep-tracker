@@ -1,15 +1,15 @@
 import React from 'react';
-import Styles from './App.module.css';
 import { CreateDay } from './pages/CreateDay';
 import { EditDay } from './pages/EditDay';
 import { Home } from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SavedGridProvider } from './contexts/SavedGridContext';
+import generalStyle from './common/general.module.css';
 
 function App() {
   return (
     <SavedGridProvider>
-      <div className={Styles.mainContainer}>
+      <div className={generalStyle.container}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />}></Route>
