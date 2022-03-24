@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Styles from './Card.module.css';
-import generalStyles from '../../common/general.module.css';
+import StylesGeneral from '../../common/general.module.css';
 
 function Card({ date, data, buttons, summary }) {
   return (
@@ -11,7 +11,7 @@ function Card({ date, data, buttons, summary }) {
         <h4>{date}</h4>
         {summary}
       </div>
-      <div className={`${generalStyles.verticalAlignSmallContainer}`}>{buttons}</div>
+      <div className={`${StylesGeneral.verticalAlignSmallContainer}`}>{buttons}</div>
     </div>
   );
 }

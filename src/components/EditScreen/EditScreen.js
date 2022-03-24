@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import generalStyles from '../../common/general.module.css';
+import StylesGeneral from '../../common/general.module.css';
 
 function EditScreen({ cells, warning, sleepModes, date, buttons }) {
   return (
-    <div className={generalStyles.container}>
+    <div className={StylesGeneral.container}>
       <div>{cells}</div>
       <div>{warning}</div>
-      <div className={generalStyles.horizontalAlignContainer}>{sleepModes}</div>
-      <div className={generalStyles.horizontalAlignContainer}>{date}</div>
-      <div className={generalStyles.horizontalAlignContainer}>{buttons}</div>
+      <div className={StylesGeneral.horizontalAlignContainer}>{sleepModes}</div>
+      <div className={StylesGeneral.horizontalAlignContainer}>{date}</div>
+      <div className={StylesGeneral.horizontalAlignContainer}>{buttons}</div>
     </div>
   );
 }

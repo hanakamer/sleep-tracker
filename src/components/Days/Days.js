@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { useNavigate, generatePath } from 'react-router-dom';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
 import { Card } from '../Card';
-import GeneralStyles from '../../common/general.module.css';
+import StylesGeneral from '../../common/general.module.css';
 import { SleepModes } from '../../utils/utils';
 
 function Days({ days = [], ...props }) {
@@ -20,7 +20,7 @@ function Days({ days = [], ...props }) {
     navigate(generatePath('/editDay/:date', { date: date }));
   }
   return (
-    <div className={GeneralStyles.verticalAlignLargeContainer}>
+    <div className={StylesGeneral.verticalAlignLargeContainer}>
       {Object.keys(days).length
         ? Object.keys(days).map((date, i) => {
             const data = days[date].data;

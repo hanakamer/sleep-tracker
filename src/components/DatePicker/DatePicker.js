@@ -1,4 +1,4 @@
-import GeneralStyles from '../../common/general.module.css';
+import StylesGeneral from '../../common/general.module.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ function DatePicker({ disabled, value, onChange, id }) {
         value={disabled}
         id={id}
       />
-      <label className={GeneralStyles.visuallyHidden} htmlFor="datepicker">
+      <label className={StylesGeneral.visuallyHidden} htmlFor="datepicker">
         date picker
       </label>
     </React.Fragment>
