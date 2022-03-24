@@ -21,13 +21,13 @@
   z-index: 1;
 }
 .cell.active {
-  background: #acb3b9;
+  background: var(--color-ui-secondary);
 }
 .cell.sleep {
-  background: #3f3feb;
+  background: var(--color-ui-primary);
 }
 .cell.fallingAsleep {
-  background: #adcbeb;
+  background: var(--color-ui-tertiary);
 }
 .cell.selected {
   opacity: 0.25;

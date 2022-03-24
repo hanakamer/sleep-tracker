@@ -1,0 +1,14 @@
+.cell {
+  width: 25px;
+  height: 1px;
+  opacity: 1;
+}
+.cell.active {
+  background: var(--color-ui-secondary);
+}
+.cell.sleep {
+  background: var(--color-ui-primary);
+}
+.cell.fallingAsleep {
+  background: var(--color-ui-tertiary);
+}
