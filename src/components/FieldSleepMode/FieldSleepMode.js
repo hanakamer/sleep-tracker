@@ -1,19 +1,19 @@
 import React from 'react';
 import { RadioButton } from '../RadioButton';
 import PropTypes from 'prop-types';
-import StylesGeneral from '../../common/general.module.css';
+import Styles from './FieldSleepMode.module.css';
 
 function FieldSleepMode({ onChange }) {
   return (
-    <div className={StylesGeneral.horizontalAlignContainer}>
+    <div className={Styles.container}>
       <RadioButton onChange={onChange} value="active">
         Active
       </RadioButton>
-      <RadioButton onChange={onChange} value="sleep" defaultChecked={true}>
-        Sleep
-      </RadioButton>
       <RadioButton onChange={onChange} value="fallingAsleep">
         Falling Asleep
+      </RadioButton>
+      <RadioButton onChange={onChange} value="sleep" defaultChecked={true}>
+        Sleep
       </RadioButton>
     </div>
   );

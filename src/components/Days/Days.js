@@ -5,8 +5,8 @@ import { Button } from '../Button';
 import { useNavigate, generatePath } from 'react-router-dom';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
 import { Card } from '../Card';
-import StylesGeneral from '../../common/general.module.css';
-import { SleepModes } from '../../utils/utils';
+import { SLEEP_MODES } from '../../utils/utils';
+import Styles from './Days.module.css';
 
 function Days({ days = [], ...props }) {
   const { savedGrid, setSavedGrid } = useSavedGrid();
@@ -20,33 +20,35 @@ function Days({ days = [], ...props }) {
     navigate(generatePath('/editDay/:date', { date: date }));
   }
   return (
-    <div className={StylesGeneral.verticalAlignLargeContainer}>
-      {Object.keys(days).length
-        ? Object.keys(days).map((date, i) => {
-            const data = days[date].data;
-            const summary = days[date].summary;
-            return (
-              <Card
-                key={date}
-                data={<DayView data={data} deleteDay={() => handleDelete(date)}></DayView>}
-                date={date}
-                summary={Object.keys(summary).map((mode, i) => {
-                  return (
-                    <div key={i}>
-                      {SleepModes[mode]}: {summary[mode]}
-                    </div>
-                  );
-                })}
-                buttons={
-                  <>
-                    <Button name={'delete'} onClick={() => handleDelete(date)} />
-                    <Button name={'edit'} onClick={() => handleEdit(date)} />
-                  </>
-                }
-              />
-            );
-          })
-        : `No sleep recorded yet`}
+    <div>
+      {Object.keys(days).length ? (
+        Object.keys(days).map((date, i) => {
+          const data = days[date].data;
+          const summary = days[date].summary;
+          return (
+            <Card
+              key={date}
+              data={<DayView data={data} deleteDay={() => handleDelete(date)}></DayView>}
+              date={date}
+              summary={Object.keys(summary).map((mode, i) => {
+                return (
+                  <div key={i}>
+                    {SLEEP_MODES[mode]}:<span className={Styles.summary}> {summary[mode]}</span>
+                  </div>
+                );
+              })}
+              buttons={
+                <>
+                  <Button name={'Edit'} onClick={() => handleEdit(date)} />
+                  <Button name={'Delete'} onClick={() => handleDelete(date)} />
+                </>
+              }
+            />
+          );
+        })
+      ) : (
+        <Card />
+      )}
     </div>
   );
 }

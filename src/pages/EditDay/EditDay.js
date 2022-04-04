@@ -3,7 +3,7 @@ import { Day } from '../../components/Day';
 import { FieldSleepMode } from '../../components/FieldSleepMode';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
 import { EditScreen } from '../../components/EditScreen';
 
@@ -31,7 +31,6 @@ function EditDay() {
       buttons={
         <>
           <Button onClick={editDay} name={'Save Sleep'} />
-          <Link to="/">Home</Link>
         </>
       }
     />

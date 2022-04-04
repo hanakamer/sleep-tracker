@@ -1,12 +1,40 @@
 .card {
   border: solid black 1px;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 10px;
-  display: grid;
-  grid-template-columns: 70px 160px 100px;
-  grid-template-rows: 150px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  min-width: 300px;
+  min-height: 140px;
+}
+.card-column {
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  row-gap: 5px;
+  max-width: 140px;
+}
+
+.cardEmpty {
+  border: dashed black 1px;
+  border-radius: 15px;
+  min-width: 300px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.summaryHeader {
+  margin: 0;
   justify-content: space-evenly;
-  justify-items: stretch;
-  align-content: space-evenly;
-  align-items: stretch;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.summaryContainer {
+  height: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
 }

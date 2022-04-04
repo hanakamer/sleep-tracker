@@ -11,10 +11,10 @@ export function minsToTime(totalminutes) {
   let resultM = minutes.toString().length < 2 ? `0${minutes}` : minutes;
   return `${resultH}:${resultM}`;
 }
-export function minsToHours(totalminutes) {
-  let hours = Math.floor(totalminutes / 60);
-  let minutes = totalminutes % 60;
-  console.log(totalminutes, hours, minutes);
+export function minsToHours(totalMinutes) {
+  let hours = Math.floor(totalMinutes / 60);
+  let minutes = totalMinutes % 60;
+  console.log(totalMinutes, hours, minutes);
   if (hours === 0) {
     return `${minutes} mins`;
   } else if (minutes === 0) {
@@ -49,7 +49,7 @@ export function calculateSummaryOfSleep(cells) {
   const result = cells.map((cell) => cell.mode).reduce(reducer, {});
   return result;
 }
-export const SleepModes = {
+export const SLEEP_MODES = {
   sleep: 'Sleep',
   active: 'Active',
   fallingAsleep: 'Falling asleep'

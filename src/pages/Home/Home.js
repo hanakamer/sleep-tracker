@@ -9,12 +9,13 @@ function Home() {
   const { savedGrid } = useSavedGrid();
 
   return (
-    <>
+    <div className={StylesGeneral.container}>
+      <h2>Sleep tracker</h2>
       <Days days={savedGrid} />
       <Link to="/createDay" className={StylesGeneral.link}>
         Record Sleep
       </Link>
-    </>
+    </div>
   );
 }
 Home.propTypes = {

@@ -1,18 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Styles from './Card.module.css';
-import StylesGeneral from '../../common/general.module.css';
 
 function Card({ date, data, buttons, summary }) {
   return (
-    <div className={Styles.card}>
-      {data}
-      <div>
-        <h4>{date}</h4>
-        {summary}
-      </div>
-      <div className={`${StylesGeneral.verticalAlignSmallContainer}`}>{buttons}</div>
-    </div>
+    <>
+      {data && (
+        <div className={Styles.card}>
+          {data}
+          <div className={Styles['card-column']}>
+            <h4 className={Styles.summaryHeader}>{date}</h4>
+            <div className={Styles.summaryContainer}>{summary}</div>
+          </div>
+          <div className={Styles['card-column']}>{buttons}</div>
+        </div>
+      )}
+      {!data && (
+        <div className={Styles.cardEmpty}>
+          <p>No sleep record yet</p>
+        </div>
+      )}
+    </>
   );
 }
 Card.propTypes = {

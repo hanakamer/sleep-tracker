@@ -1,62 +1,62 @@
+.radioBtn:before {
+  width: 12px;
+  height: 12px;
+  border-radius: 15px;
+  top: -2px;
+  left: -2px;
+  position: relative;
+  background-color: var(--color-white);
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 3px solid;
+}
 
-.radioBtn:after {
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        top: -1px;
-        left: -4px;
-        position: relative;
-        background-color: #fff;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid white;
-    }
 .radioBtn:checked:after {
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        top: -1px;
-        left: -4px;
-        position: relative;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        
-    }
-     .radioBtn#active:checked:after{
-         background-color:#acb3b9;
-    }
-     .radioBtn#active:after{
-         border: 2px solid #acb3b9;
-     }
+  width: 8px;
+  height: 8px;
+  border-radius: 15px;
+  top: -22px;
+  left: 3px;
+  position: relative;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+}
 
-    .radioBtn#sleep:checked:after{
-         background-color: #3f3feb;
-    }
-     .radioBtn#sleep:after{
-         border: 2px solid #3f3feb;
-     }
-    .radioBtn#fallingAsleep:checked:after {
-         background-color: #adcbeb;
-    }
-     .radioBtn#fallingAsleep:after{
-         border: 2px solid #adcbeb;
-     }
+.radioBtn#active:before {
+  border-color: var(--color-ui-secondary);
+}
+.radioBtn#active:checked:after {
+  border: none;
+  background-color: var(--color-ui-secondary);
+}
 
+.radioBtn#sleep:before {
+  border-color: var(--color-ui-primary);
+}
+.radioBtn#sleep:checked:after {
+  border: none;
+  background-color: var(--color-ui-primary);
+}
+.radioBtn#fallingAsleep:checked:after {
+  border: none;
+  background-color: var(--color-ui-tertiary);
+}
+.radioBtn#fallingAsleep:before {
+  border-color: var(--color-ui-tertiary);
+}
 
 .radioBtn:checked + label#fallingAsleep {
-     color: #adcbeb;
-    font-weight: bold;
+  color: var(--color-ui-tertiary);
 }
 .radioBtn:checked + label#active {
-     color: #acb3b9;
-    font-weight: bold;
+  color: var(--color-ui-secondary);
 }
- .radioBtn:checked + label#sleep  {
-     color: #3f3feb;
-    font-weight: bold;
+.radioBtn:checked + label#sleep {
+  color: var(--color-ui-primary);
 }
- .radioBtn, .btnLabel{
-    cursor: pointer;
+.radioBtn,
+.btnLabel {
+  cursor: pointer;
 }
