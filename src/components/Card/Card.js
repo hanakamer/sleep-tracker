@@ -8,9 +8,9 @@ function Card({ date, data, buttons, summary }) {
       {data && (
         <div className={Styles.card}>
           {data}
-          <div className={Styles['card-column']}>
+          <div className={`${Styles['card-column']} ${Styles['summaryContainer']}`}>
             <h4 className={Styles.summaryHeader}>{date}</h4>
-            <div className={Styles.summaryContainer}>{summary}</div>
+            <div className={Styles.summaryContent}>{summary}</div>
           </div>
           <div className={Styles['card-column']}>{buttons}</div>
         </div>

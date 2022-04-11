@@ -7,13 +7,13 @@
   margin: 10px;
   min-width: 300px;
   min-height: 140px;
+  gap: 15px;
 }
 .card-column {
   display: flex;
   flex-direction: column;
   align-content: start;
   row-gap: 5px;
-  max-width: 140px;
 }
 
 .cardEmpty {
@@ -32,9 +32,12 @@
   display: flex;
   flex-direction: column;
 }
-.summaryContainer {
+.summaryContent {
   height: 100%;
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
+}
+.summaryContainer {
+  flex-grow: 1;
 }
