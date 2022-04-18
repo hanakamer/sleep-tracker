@@ -1,62 +1,64 @@
-.radioBtn:before {
+.radioButton input[type='radio'] {
+  visibility: hidden;
+}
+.radioButton label {
+  position: relative;
+}
+.radioButton input[type='radio'] + label:before {
   width: 18px;
   height: 18px;
   border-radius: 15px;
-  top: -1px;
-  left: -2px;
-  position: relative;
+  position: absolute;
   background-color: var(--color-white);
   content: '';
   display: inline-block;
-  visibility: visible;
   border: 3px solid;
+  top: 50%;
+  left: -15px;
+  transform: translate(-50%, -50%);
 }
-
-.radioBtn:checked:after {
+.radioButton input[type='radio']:checked + label:after {
   width: 6px;
   height: 6px;
-  border-radius: 15px;
-  top: -22px;
-  left: 4px;
-  position: relative;
-  content: '';
+  border-radius: 50%;
+  top: 50%;
+  left: -15px;
+  transform: translate(-50%, -50%);
+  position: absolute;
   display: inline-block;
+  content: '';
   visibility: visible;
 }
-
-.radioBtn#active:before {
+.radioButton #active + label:before {
   border-color: var(--color-ui-secondary);
 }
-.radioBtn#active:checked:after {
+.radioButton #active:checked + label:after {
   border: none;
   background-color: var(--color-ui-secondary);
 }
-
-.radioBtn#sleep:before {
+.radioButton #sleep + label:before {
   border-color: var(--color-ui-primary);
 }
-.radioBtn#sleep:checked:after {
+.radioButton #sleep:checked + label:after {
   border: none;
   background-color: var(--color-ui-primary);
 }
-.radioBtn#fallingAsleep:checked:after {
+.radioButton #fallingAsleep + label:before {
+  border-color: var(--color-ui-tertiary);
+}
+.radioButton #fallingAsleep:checked + label:after {
   border: none;
   background-color: var(--color-ui-tertiary);
 }
-.radioBtn#fallingAsleep:before {
-  border-color: var(--color-ui-tertiary);
-}
-
-.radioBtn:checked + label#fallingAsleep {
+.radioButton input[type='radio']:checked + label#fallingAsleep {
   color: var(--color-ui-tertiary);
 }
-.radioBtn:checked + label#active {
+.radioButton input[type='radio']:checked + label#active {
   color: var(--color-ui-secondary);
 }
-.radioBtn:checked + label#sleep {
+.radioButton input[type='radio']:checked + label#sleep {
   color: var(--color-ui-primary);
 }
-.radioBtn,
-.btnLabel {
+.radioButton label {
   cursor: pointer;
 }
