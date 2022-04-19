@@ -24,9 +24,9 @@ function Card({ date, data, buttons, summary }) {
   );
 }
 Card.propTypes = {
-  date: PropTypes.node.isRequired,
-  data: PropTypes.node.isRequired,
-  buttons: PropTypes.node.isRequired,
-  summary: PropTypes.node.isRequired
+  date: PropTypes.node,
+  data: PropTypes.node,
+  buttons: PropTypes.node,
+  summary: PropTypes.node
 };
 export default Card;

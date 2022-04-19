@@ -23,7 +23,7 @@ export function minsToHours(totalMinutes) {
   return `${hours}:${minutes} hours`;
 }
 export function createNewDayCells() {
-  const ROW_LENGTH = 96;
+  const ROW_LENGTH = NUMBER_OF_CELLS;
   const ROW_DATA = [];
   for (let col = 0; col < ROW_LENGTH; col++) {
     const time = calculateTime(ROW_LENGTH, col + 1);
@@ -49,8 +49,47 @@ export function calculateSummaryOfSleep(cells) {
   const result = cells.map((cell) => cell.mode).reduce(reducer, {});
   return result;
 }
+export function clusterCells(cells) {
+  let currentMode = null;
+  let obj = {
+    startIndex: null,
+    endIndex: null,
+    mode: null
+  };
+  const clusteredCells = cells.reduce((result, current, i) => {
+    if (currentMode !== current.mode && currentMode != null) {
+      obj = { ...obj, endIndex: i - 1 };
+      result.push(obj);
+      currentMode = current.mode;
+      obj = {
+        endIndex: null,
+        startIndex: i,
+        mode: current.mode
+      };
+    }
+    if (i === cells.length - 1) {
+      obj = { ...obj, endIndex: i };
+      result.push(obj);
+    }
+    if (currentMode === null) {
+      currentMode = current.mode;
+      obj = { ...obj, startIndex: i, mode: current.mode };
+    }
+
+    return result;
+  }, []);
+
+  return clusteredCells;
+}
+export function calculatePercentage(partialVal, totalVal) {
+  if (partialVal === 0) {
+    return 0;
+  }
+  return Math.round((partialVal * 100) / totalVal);
+}
 export const SLEEP_MODES = {
   sleep: 'Sleep',
   active: 'Active',
   fallingAsleep: 'Falling asleep'
 };
+export const NUMBER_OF_CELLS = 96;

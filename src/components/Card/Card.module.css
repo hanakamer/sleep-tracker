@@ -12,7 +12,7 @@
 .card-column {
   display: flex;
   flex-direction: column;
-  align-content: start;
+  align-content: flex-start;
   row-gap: 5px;
 }
 
