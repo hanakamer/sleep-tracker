@@ -57,8 +57,9 @@ export function clusterBase(cells) {
     mode: null
   };
   const clusteredCells = cells.reduce((result, current, i) => {
+    console.log(result, i, currentMode, cells.length);
     if (currentMode !== current.mode && currentMode != null) {
-      obj = { ...obj, endIndex: i - 1 };
+      obj = { ...obj, endIndex: i };
       result.push(obj);
       currentMode = current.mode;
       obj = {
@@ -67,7 +68,7 @@ export function clusterBase(cells) {
         mode: current.mode
       };
     }
-    if (i === cells.length - 1) {
+    if (i + 1 === cells.length) {
       obj = { ...obj, endIndex: i };
       result.push(obj);
     }
@@ -85,7 +86,8 @@ export function calculatePercentage(partialVal, totalVal) {
   if (partialVal === 0) {
     return 0;
   }
-  return Math.round((partialVal * 100) / totalVal);
+  const result = Math.round((partialVal * 100) / totalVal);
+  return result;
 }
 export const SLEEP_MODES = {
   sleep: 'Sleep',

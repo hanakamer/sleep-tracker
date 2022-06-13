@@ -71,22 +71,22 @@ const dataTest = [
 const cellsClusterResult = [
   {
     startIndex: 0,
-    endIndex: 1,
+    endIndex: 2,
     mode: 'active'
   },
   {
     startIndex: 2,
-    endIndex: 3,
+    endIndex: 4,
     mode: 'fallingAsleep'
   },
   {
     startIndex: 4,
-    endIndex: 6,
+    endIndex: 7,
     mode: 'sleep'
   },
   {
     startIndex: 7,
-    endIndex: 7,
+    endIndex: 8,
     mode: 'active'
   },
   {
@@ -119,7 +119,7 @@ describe('calculatePrecentage()', () => {
 });
 
 describe('calculateSummaryOfSleep()', () => {
-  it('returns summary data of one day data', () => {
+  it('sums each mode and returns as key:value, mode:value object', () => {
     const result = calculateSummaryOfSleep(dataTest);
     expect(result).toEqual(cellsSummaryResult);
   });
