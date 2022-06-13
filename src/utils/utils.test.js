@@ -1,4 +1,4 @@
-import { clusterBase, calculatePercentage } from './utils';
+import { clusterBase, calculatePercentage, calculateSummaryOfSleep } from './utils';
 const dataTest = [
   {
     id: 0,
@@ -68,7 +68,7 @@ const dataTest = [
   }
 ];
 
-const cellsResult = [
+const cellsClusterResult = [
   {
     startIndex: 0,
     endIndex: 1,
@@ -95,10 +95,15 @@ const cellsResult = [
     mode: 'sleep'
   }
 ];
+const cellsSummaryResult = {
+  active: 3,
+  fallingAsleep: 2,
+  sleep: 6
+};
 describe('clusterBase()', () => {
   it('returns cells grouped by mode', () => {
     const result = clusterBase(dataTest);
-    expect(result).toEqual(cellsResult);
+    expect(result).toEqual(cellsClusterResult);
   });
 });
 
@@ -110,5 +115,12 @@ describe('calculatePrecentage()', () => {
   it('returns integer', () => {
     const result = calculatePercentage(25, 75);
     expect(result).toEqual(33);
+  });
+});
+
+describe('calculateSummaryOfSleep()', () => {
+  it('returns summary data of one day data', () => {
+    const result = calculateSummaryOfSleep(dataTest);
+    expect(result).toEqual(cellsSummaryResult);
   });
 });
