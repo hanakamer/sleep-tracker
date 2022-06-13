@@ -49,7 +49,7 @@ export function calculateSummaryOfSleep(cells) {
   const result = cells.map((cell) => cell.mode).reduce(reducer, {});
   return result;
 }
-export function clusterCells(cells) {
+export function clusterBase(cells) {
   let currentMode = null;
   let obj = {
     startIndex: null,

@@ -1,4 +1,4 @@
-import { clusterCells, calculatePercentage } from './utils';
+import { clusterBase, calculatePercentage } from './utils';
 const dataTest = [
   {
     id: 0,
@@ -95,15 +95,15 @@ const cellsResult = [
     mode: 'sleep'
   }
 ];
-describe('createCells()', () => {
-  it('works', () => {
-    const result = clusterCells(dataTest);
+describe('clusterBase()', () => {
+  it('returns cells grouped by mode', () => {
+    const result = clusterBase(dataTest);
     expect(result).toEqual(cellsResult);
   });
 });
 
 describe('calculatePrecentage()', () => {
-  it('works', () => {
+  it('returns percantage of partial value in total value', () => {
     const result = calculatePercentage(10, 20);
     expect(result).toEqual(50);
   });
