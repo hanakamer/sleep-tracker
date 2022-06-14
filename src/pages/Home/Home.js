@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Days } from '../../components/Days';
 import StylesGeneral from '../../common/general.module.css';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
-
+import ButtonStyle from '../../components/Button/Button.module.css';
 function Home() {
   const { savedGrid } = useSavedGrid();
 
@@ -12,7 +12,7 @@ function Home() {
     <div className={StylesGeneral.container}>
       <h2>Sleep tracker</h2>
       <Days days={savedGrid} />
-      <Link to="/createDay" className={StylesGeneral.link}>
+      <Link to="/createDay" className={`${StylesGeneral.link} ${ButtonStyle.button}`}>
         Record Sleep
       </Link>
     </div>
