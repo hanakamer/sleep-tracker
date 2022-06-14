@@ -2,6 +2,22 @@
 
 Tool that helps you visualize sleep hours in a month
 
+<p align="center">
+  <kbd>
+<img src="https://github.com/hanakamer/sleep-tracker/blob/main/screenshot_2.png" width="500"/>
+  </kbd>
+</p>
+
+<p align="center">
+  <kbd>
+<img src="https://github.com/hanakamer/sleep-tracker/blob/main/screenshot_1.png" width="300"/>
+  </kbd>
+</p>
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
