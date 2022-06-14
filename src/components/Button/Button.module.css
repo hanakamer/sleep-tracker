@@ -4,27 +4,27 @@
   font-weight: 800;
   min-height: 35px;
   min-width: 40px;
-  border: 1px solid #3f3feb;
-  color: #3f3feb;
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
   padding: 10px;
 }
 .button:hover {
   cursor: pointer;
-  background: #3f3feb;
+  background: var(--color-ui-primary);
   color: white;
 }
 .button:focus {
-  box-shadow: 0 0 0 2px #adcbeb;
+  box-shadow: 0 0 0 2px var(--color-ui-tertiary);
 }
 .button:active {
   outline: none;
-  background: #3f3feb;
-  background: #acb3b9;
+  background: var(--color-ui-primary);
+  background: var(--color-ui-secondary);
   color: white;
 }
 .button:disabled,
 .button[disabled],
 .button:hover:disabled {
-  background: #acb3b9;
+  background: var(--color-ui-secondary);
   color: white;
 }

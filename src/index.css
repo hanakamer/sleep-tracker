@@ -1,7 +1,26 @@
-body {
-  margin: 0;
- font-family: 'Open Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --color-ui-primary: #3f3feb;
+  --color-ui-secondary: #acb3b9;
+  --color-ui-tertiary: #adcbeb;
+  --color-black: black;
+  --color-white: white;
 }
 
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+h2 {
+  font-weight: 700;
+}

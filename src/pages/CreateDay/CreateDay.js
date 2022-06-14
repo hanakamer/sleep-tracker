@@ -3,10 +3,10 @@ import { Day } from '../../components/Day';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
 import { FieldSleepMode } from '../../components/FieldSleepMode';
-import GeneralStyles from '../../common/general.module.css';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { createNewDayCells } from '../../utils/utils';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
+import { EditScreen } from '../../components/EditScreen';
 
 const ROW_DATA = createNewDayCells();
 
@@ -55,33 +55,28 @@ function CreateDay() {
     setStartDate(newDate);
   }
   return (
-    <>
-      <div className={GeneralStyles.sectionContainer}>
-        <Day row={grid} mode={mode} changeRow={setGrid} />
-      </div>
-      {isPresent && (
-        <div className={GeneralStyles.sectionContainer}>
+    <EditScreen
+      cells={<Day row={grid} mode={mode} changeRow={setGrid} />}
+      warning={
+        isPresent && (
           <p>
             This date is already saved please select another day or edit{' '}
             <Link to={{ pathname: `/editDay/${startDate}` }}>{startDate}</Link>
           </p>
-        </div>
-      )}
-
-      <div className={GeneralStyles.sectionContainer}>
-        <FieldSleepMode onChange={handleModeChange}></FieldSleepMode>
-      </div>
-      <div className={GeneralStyles.sectionContainer}>
+        )
+      }
+      sleepModes={<FieldSleepMode onChange={handleModeChange}></FieldSleepMode>}
+      date={
         <DatePicker
           value={startDate}
           disabled={editDate}
           onChange={handleDateChange}
           id={startDate ? startDate : 'initialID'}></DatePicker>
-      </div>
-      <div className={GeneralStyles.sectionContainer}>
+      }
+      buttons={
         <Button disabled={startDate ? false : true} onClick={createDay} name={'Save Sleep'} />
-      </div>
-    </>
+      }
+    />
   );
 }
 

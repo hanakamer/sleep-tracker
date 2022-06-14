@@ -17,7 +17,7 @@ function Cell({ mode, selected, cell, ...props }) {
           setHoverState(false);
         }}>
         {hoverState && <span className={classNames(Styles.info)}>{cell.time}</span>}
-        {cell.time === '00:00' || cell.time === '06:00' ? (
+        {cell.time === '01:00' || cell.time === '23:00' ? (
           <span className={classNames(Styles.info)}>{cell.time}</span>
         ) : (
           ''

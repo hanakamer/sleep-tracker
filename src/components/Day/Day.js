@@ -95,7 +95,7 @@ function Day({ row, mode, changeRow }) {
   }, [range, mouseStatus.down, mode.mode, changeRow]);
 
   return (
-    <div className={Styles.container}>
+    <div className={Styles.dayEditContainer}>
       {row.map((cell) => {
         return (
           <Cell

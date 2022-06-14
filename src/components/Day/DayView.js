@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '../Cell';
+import { SummaryCell } from '../SummaryCell';
 import Styles from './Day.module.css';
-
-function DayView({ data, date }) {
+import { clusterBase } from '../../utils/utils';
+function DayView({ data }) {
+  const clusteredCells = clusterBase(data);
   return (
-    <div className={Styles.container}>
-      <p>{date}</p>
-      {data.map((cell) => {
-        return <Cell cell={cell} key={cell.id} mode={cell.mode} />;
+    <div className={Styles.dayViewContainer}>
+      {clusteredCells.map((cell) => {
+        return <SummaryCell key={cell.startIndex} cell={cell} mode={cell.mode} />;
       })}
     </div>
   );
 }
 DayView.propTypes = {
-  data: PropTypes.array,
-  date: PropTypes.string
+  data: PropTypes.array
 };
 
 export default DayView;

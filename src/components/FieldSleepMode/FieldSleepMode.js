@@ -1,20 +1,21 @@
 import React from 'react';
 import { RadioButton } from '../RadioButton';
 import PropTypes from 'prop-types';
+import Styles from './FieldSleepMode.module.css';
 
 function FieldSleepMode({ onChange }) {
   return (
-    <React.Fragment>
+    <div className={Styles.container}>
       <RadioButton onChange={onChange} value="active">
-        active
-      </RadioButton>
-      <RadioButton onChange={onChange} value="sleep" defaultChecked={true}>
-        sleep
+        Active
       </RadioButton>
       <RadioButton onChange={onChange} value="fallingAsleep">
         Falling Asleep
       </RadioButton>
-    </React.Fragment>
+      <RadioButton onChange={onChange} value="sleep" defaultChecked={true}>
+        Sleep
+      </RadioButton>
+    </div>
   );
 }
 FieldSleepMode.propTypes = {

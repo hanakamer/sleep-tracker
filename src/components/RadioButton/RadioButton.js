@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 
 function RadioButton({ onChange, value, defaultChecked = false, children }) {
   return (
-    <div>
+    <div className={Styles.radioButton}>
       <input
         onChange={onChange}
         id={Styles[value]}
-        className={Styles.radioBtn}
         type="radio"
         value={value}
         name="mode"

@@ -3,15 +3,15 @@ import { Day } from '../../components/Day';
 import { FieldSleepMode } from '../../components/FieldSleepMode';
 import { Button } from '../../components/Button';
 import { DatePicker } from '../../components/DatePicker';
-import Styles from '../../common/general.module.css';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSavedGrid } from '../../contexts/SavedGridContext';
+import { EditScreen } from '../../components/EditScreen';
 
 function EditDay() {
   let { date } = useParams();
   const [mode, setMode] = useState({ mode: 'sleep' });
   const { savedGrid, saveGrid } = useSavedGrid();
-  const [grid, setGrid] = useState(savedGrid[date]);
+  const [grid, setGrid] = useState(savedGrid[date].data);
   const navigate = useNavigate();
 
   function handleModeChange(e) {
@@ -24,22 +24,16 @@ function EditDay() {
   }
 
   return (
-    <>
-      <div className={Styles.sectionContainer}>
-        <Day row={grid} mode={mode} changeRow={setGrid} />
-      </div>
-
-      <div className={Styles.sectionContainer}>
-        <FieldSleepMode onChange={handleModeChange}></FieldSleepMode>
-      </div>
-      <div className={Styles.sectionContainer}>
-        <DatePicker disabled={date} id={date}></DatePicker>
-      </div>
-      <div className={Styles.sectionContainer}>
-        <Button onClick={editDay} name={'Save Sleep'} />
-        <Link to="/">Home</Link>
-      </div>
-    </>
+    <EditScreen
+      cells={<Day row={grid} mode={mode} changeRow={setGrid} />}
+      sleepModes={<FieldSleepMode onChange={handleModeChange} />}
+      date={<DatePicker disabled={date} id={date} />}
+      buttons={
+        <>
+          <Button onClick={editDay} name={'Save Sleep'} />
+        </>
+      }
+    />
   );
 }
 
