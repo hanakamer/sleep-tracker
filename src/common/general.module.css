@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5% 3%;
   min-height: 100vh;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .visuallyHidden {
   border: 0 !important;

@@ -4,7 +4,7 @@
 .editScreenContainer {
   display: flex;
   width: 100%;
-  row-gap: 10px;
+  gap: 20px;
   flex-direction: column;
   align-items: center;
 }

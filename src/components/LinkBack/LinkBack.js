@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function LinkBack({ urlBack, className }) {
   return (
     <div className={className}>
-      <Link to={urlBack}>{`<`}</Link>
+      <Link to={urlBack}>{`< Back`}</Link>
     </div>
   );
 }

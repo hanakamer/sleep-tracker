@@ -13,10 +13,10 @@ function EditScreen({ cells, warning, sleepModes, date, buttons }) {
       </div>
 
       <div className={Styles.editScreenContainer}>
-        <div className={`${Styles.row} ${Styles.cells}`}>{cells}</div>
-        <div className={Styles.row}>{warning}</div>
+        <div className={`${Styles.row}`}>{cells}</div>
+        {warning && <div className={Styles.row}>{warning}</div>}
         <div className={Styles.row}>{sleepModes}</div>
-        <div className={`${Styles.row} ${Styles.date}`}>{date}</div>
+        <div className={`${Styles.row}`}>{date}</div>
       </div>
 
       <div className={Styles.row}>{buttons}</div>
