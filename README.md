@@ -1,3 +1,7 @@
+# Sleep Tracker
+
+Tool that helps you visualize sleep hours in a month
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
